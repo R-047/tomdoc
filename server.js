@@ -39,33 +39,31 @@ app.post("/login_check", (req, res) => {
   const pwd = req.body.pwdInput;
   console.log(email + " " + pwd);
 
- //connect to database and perform querry and close connection
-      client.connect();
-      console.log("CONNECTED TO DATABASE");
-      var q = `select type from applicants where email='${email}' and password='${pwd}'`;
-      let result = null;
-      client.query(q, (err, resul) => {
-        console.log("CONNECTED TO DATABASE");
-        // if(err) throw err;
-        console.log(resul);
-        result = resul.rows;
-        client.end();
-      });
-
-      console.log(result);
-      if (!result.length > 0) {
-        res.send("user doesnt exist");
-      }
-      if (result.length > 0 && result[0].type === false) {
-        res.sendFile(path.join(__dirname, "public", "pp.html"));
-        res.cookie("userPpEmail", email);
-        res.cookie("userPpType", 0);
-      } else if (result.length > 0 && result[0].type === true) {
-        res.sendFile(path.join(__dirname, "public", "doc.html"));
-        res.cookie("userDocEmail", email);
-        res.cookie("userDocType", 1);
-      }
-    
+  //connect to database and perform querry and close connection
+  client.connect();
+  console.log("CONNECTED TO DATABASE");
+  var q = `select type from applicants where email='${email}' and password='${pwd}'`;
+  let result = null;
+  client.query(q, (err, resul) => {
+    console.log("CONNECTED TO DATABASE");
+    // if(err) throw err;
+    console.log(resul);
+    result = resul.rows;
+    console.log(result);
+    if (!result.length > 0) {
+      res.send("user doesnt exist");
+    }
+    if (result.length > 0 && result[0].type === false) {
+      res.sendFile(path.join(__dirname, "public", "pp.html"));
+      res.cookie("userPpEmail", email);
+      res.cookie("userPpType", 0);
+    } else if (result.length > 0 && result[0].type === true) {
+      res.sendFile(path.join(__dirname, "public", "doc.html"));
+      res.cookie("userDocEmail", email);
+      res.cookie("userDocType", 1);
+    }
+    client.end();
+  });
 });
 
 app.post("/create_user", (req, res) => {
@@ -111,8 +109,6 @@ app.post("/create_user", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "loginActual.html"));
     client.end();
   });
-
-
 });
 
 let bookReqData = null;
