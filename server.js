@@ -43,12 +43,12 @@ app.post("/login_check", (req, res) => {
   client.connect();
   console.log("CONNECTED TO DATABASE");
   var q = `select type from applicants where email='${email}' and password='${pwd}'`;
-  let result = null;
+  
   client.query(q, (err, resul) => {
     console.log("CONNECTED TO DATABASE");
     // if(err) throw err;
     console.log(resul);
-    result = resul.rows;
+    var result = resul.rows;
     console.log(result);
     if (!result.length > 0) {
       res.send("user doesnt exist");
