@@ -41,8 +41,12 @@ app.post("/login_check", (req, res) => {
 
  //connect to database and perform querry and close connection
       client.connect();
-      client.query("SELECT * from applicants", (err, resul) => {
-        if(err) throw err;
+      console.log("CONNECTED TO DATABASE");
+      var q = `select type from applicants where email='${email}' and password='${pwd}'`;
+      client.query(q, (err, resul) => {
+        console.log("CONNECTED TO DATABASE");
+        // if(err) throw err;
+        console.log(resul);
         result = resul.rows;
         client.end();
       });
