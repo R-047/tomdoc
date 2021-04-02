@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+body, html {
+    height: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+.image{
+    width: 400px;
+    position: absolute;
+    left: 750px;
+    top: 75px;
+}
+
+.line{
+    border-left: 0.25px solid grey;
+    height: 600px;
+    position: absolute;
+    left: 350px;
+    top: 75px;
+}
+
+.vetVisit{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    left: 600px;
+    top: 500px;
+    border: 0.25px solid black;
+    background-color:  white;
+    border-radius: 30px;
+    box-shadow: 7px 7px 5px black;
+}
+.vetvisitImage{
+    background-image: url("../res/vetVisits.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    left: 50px;
+    top: 25px;
+}
+.prescriptions{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    left: 900px;
+    top: 500px;
+    border: 0.25px solid black;
+    background-color:  white;
+    border-radius: 30px;
+    box-shadow: 7px 7px 5px black;
+}
+.prescImage{
+    background-image: url("../res/presc.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    left: 50px;
+    top: 25px;
+}
+.pets{
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    left: 1200px;
+    top: 500px;
+    border: 0.25px solid black;
+    background-color:  white;
+    border-radius: 30px;
+    box-shadow: 7px 7px 5px black;
+}
+.petsImage{
+    background-image: url("../res/pets.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 60px;
+    width: 60px;
+    left: 50px;
+    top: 25px;
+}
+.settings{
+    
+    height: 50px;
+    width: 230px;
+    position: absolute;
+    top:30px;
+    left:1275px;
+    border-radius: 50px;
+    border: 0.25px solid black;
+}
+.dp{
+    
+    border: 0.25px solid black;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    padding: 0px 0px 0px 0px;
+    margin: 7px 10px 0px 6px;
+    /* border: 0px 0px 0px 0px; */
+    float:left;
+}
+.username{
+    font-family: 'roboto';
+    font-size:20px;
+    float: right;
+    padding: 0px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
+    
+    float: left;
+
+}
+.opts{
+    border-width: 0px;
+    padding: 0px 0px 0px 0px;
+    margin: 15px 0px 0px 50px;
+}
+
+.greetings{
+    font-family : 'roboto';
+    font-size : 50px;
+    color : #000000;
+    position: absolute;
+    left: 375px;
+    top: 75px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 50px;
+}
+
+.bookBtn{
+    background : #FF2320;
+    border-radius : 22px;
+    color: white;
+    outline: none;
+    border-width: 0px;
+    width: 200px;
+    height: 40px;
+    font-family : Arial, Helvetica, sans-serif;
+    font-size : 25px;
+    position: absolute;
+    left: 420px;
+    top:130px;
+}
+
+.notifiBtn{
+    background-image: url("../res/bellBtn.png");
+    background-size: contain;
+    height: 50px;
+    width:50px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    outline: none;
+    border-width: 0px;
+    position: absolute;
+    top:30px;
+    left:1200px;
+}
+
+ul{
+    font:18px "Gadugi";
+	font-weight: bold;
+	padding: 0px 0px 0px 0px;
+	margin: 80px 10px 10px 10px;
+}
+
+ li{
+    list-style-type: none;
+    padding: 75px 0px 0px 135px;
+    margin: 0px 0px 0px 0px;
+} 
+
+.dashboardImg{
+    background-image: url("../res/dashBoard.png");
+    border: 0px;
+    background-size: contain;
+    height: 50px;
+    width:50px;
+    background-repeat: no-repeat;
+    float: left;
+    
+
+}
+
+.dbText{
+    /* border: 2px solid black; */
+    width: 120px;
+    position: relative;
+    top: 10px;
+    margin-left: 10px;
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+    font-family: 'roboto';
+    font-size: 21px;
+    color: gray;
+}
+
+.dbText .SlideText{
+    padding: 0px;
+    margin-left:-150px;
+}
+
+@keyframes slideIn{
+    0% { margin-left:-150px; }
+    20% { margin-left:-150px; }
+    35% { margin-left:10px; }
+    100% { margin-left:10px; }
+
+}
+
+.dashboardImg:hover, .vetVisitImg:hover, .prescImg:hover, .caseSheetImg:hover{
+    height: 55px;
+    width: 55px;
+}
+
+
+.vetVisitImg{
+    
+    background-image: url("../res/stheth.png");
+    border: 0px;
+    background-size: contain;
+    height: 50px;
+    width:50px;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.prescImg{
+    background-image: url("../res/prescMenu.png");
+    border: 0px;
+    background-size: contain;
+    height: 50px;
+    width:50px;
+    background-repeat: no-repeat;
+    float: left;
+    
+}
+
+.caseSheetImg{
+    background-image: url("../res/cSheet.png");
+    border: 0px;
+    background-size: contain;
+    height: 50px;
+    width:50px;
+    background-repeat: no-repeat;
+    float: left;
+
+}
+
+.cardInnerText{
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    margin: 30px 0px 0px 0px;
+
+}
+
+.counts{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}

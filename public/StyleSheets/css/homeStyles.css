@@ -1,0 +1,125 @@
+
+body {
+
+	background-image: url("../res/dogimg.jpg") ;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 7px -100px;
+}
+
+header ul {
+	font:18px "Gadugi";
+	font-weight: bold;
+	padding: 10px 10px 10px 300px;
+	margin: 10px 10px 10px 10px;
+	
+}
+
+header li {
+	float:left;
+	list-style-type: none;
+	padding: 10px 10px 10px 120px;
+	margin: 10px 10px 10px 10px;
+	display: inline;
+	
+}
+
+header nav {
+	position: fixed;
+}
+
+.tagline {
+  font: 30px Gadugi;
+  font-weight: bold;
+  padding-top: 275px;
+  padding-left: 50px;
+
+}
+
+.tagline h1 {
+	
+	line-height: 50%
+}
+
+.quest {
+	padding-right: 500px;
+	float:right;
+
+
+}
+
+.quest h1{
+	font: 35px Gadugi;
+	font-weight: bold;
+	line-height: 5%
+}
+
+.quest button{
+	
+	background-color: #2F5061;
+	color: white;
+	border-radius: 15px;
+	border-color: transparent;
+	padding: 10px 10px 10px 10px;
+	font-size: 20px;
+
+}
+
+img {
+	padding-left: 20px;
+	padding-top: 10px;
+	max-width: 20%;
+	max-height: 20%;
+	float:left;
+}
+
+.buttons{
+	padding-left: 60px;
+}
+
+.buttons button{
+	background-color: #9F2B00;
+	color: white;
+	border-radius: 10px;
+	font-size: 20px;
+	margin-right: 10px;
+	border-color: transparent;
+	padding: 10px 10px 10px 10px;
+
+}
+
+li button {
+	background-color: transparent;
+	border-color: white;
+	border-width: 5px;
+	border-style: solid;
+	color: white;
+	font: 18px Gadugi;
+	font-weight: bold;
+	border-radius: 15px;
+	padding: 5px 10px 5px 10px;
+	position: relative;
+
+}
+
+a:link {
+	color: black;
+	text-decoration: none;
+  }
+
+  a:visited {
+	color: black;
+	text-decoration: none;
+  }
+  
+  a:hover {
+	text-decoration: underline;
+  }
+  
+  a:active {
+	text-decoration: underline;
+  }
+
+
+
+

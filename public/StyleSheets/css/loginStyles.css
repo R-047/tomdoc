@@ -1,0 +1,146 @@
+
+
+body, html {
+    height: 100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+    overflow-y: hidden;
+  }
+
+.container {
+    width: 500px;
+    position: absolute;
+    left: 60em;
+    top: 10em;
+  }
+  
+  #my-form, #my-formDoc {
+    padding: 2rem;
+    background: transparent;
+  }
+  
+  #my-form label, #my-formDoc label {
+    display: block;
+    font: 15px helvetica;
+    position: relative;
+    left: 10px;
+    margin-bottom: 5px;
+  }
+  
+  #Password, #email, #PasswordDoc, #emailDoc {
+    width: 250px;
+    height: 30px;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+  }
+
+
+
+  .btn{
+      margin-top: 10px;
+      padding: 5px 10px 5px 10px;
+      width: 270px;
+      height: 50px;
+      font: 15px helvetica;
+      background-color: indigo;
+      color: white;
+      border-radius: 20px;
+      border: 0px ;
+  } 
+
+  h1 {
+    font: 21px helvetica;
+    position: relative;
+    left: 100px;
+  }
+
+ #showButton, #showButtonDoc {
+   position: relative;
+   right: 60px;
+   top: 0px;
+   background-color: transparent;
+   border: 0px;
+   outline: none;
+ }
+
+ .PetParentButton{
+   position: absolute;
+   top:10em;
+   left: 80em;
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
+   background-color: transparent;
+   background-image: url("../res/paw.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   outline: none;
+   border: none;
+ }
+
+ .PetParentButton:hover{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+ }
+
+ .DocButton{
+  position: absolute;
+  top: 10em;
+  left: 85em;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url("../res/docIco.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+   outline: none;
+   border: none;
+ }
+ .DocButton:hover{
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+ }
+
+ .image{
+  opacity: 1;
+  height: 850px;
+  width: 900px;
+  position: absolute;
+  right: 800px;
+  top: 50px;
+
+ }
+
+ #PetParent {
+   opacity: 1;
+ }
+
+ #Doc {
+    opacity: 0;
+    display: none;
+ }
+
+ @keyframes OpDownAnime{
+   0%{
+     opacity: 1;
+   }
+   100%{
+     opacity: 0;
+   }
+ }
+
+ @keyframes OpUpAnime{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sign Up to Tom's Doc</title>
+    <style>
+      .btn-primary {
+        font-family: Cambria;
+        font-size: 25px;
+        background-color: #09c2ff;
+      }
+      input[type="text"] {
+        width: 40%;
+        padding: 10px 10px;
+        margin: 1px 0;
+        box-sizing: border-box;
+      }
+      input[type="age"] {
+        width: 10%;
+        padding: 10px 10px;
+        margin: 1px 0;
+        box-sizing: border-box;
+      }
+      input[type="password"] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 1px 0;
+        box-sizing: border-box;
+      }
+      input[type="email"] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 1px 0;
+        box-sizing: border-box;
+      }
+      input[type="textarea"] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 1px 0;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-family: cambria;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Sign Up Today!!</h1>
+      <p1>Please fill all the credentials given below</p1>
+      <form action="/create_user" method="POST">
+        <label for="Fullname">Enter Your Name</label>
+        <input
+          class="form-control form-control-lg"
+          type="text"
+          placeholder="Full Name"
+          id="Fullname"
+          name="Fullname"
+        />
+        <br />
+        <br />
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email"
+          />
+          <br />
+          <small id="emailHelp" class="form-text text-muted"
+            >(We'll never share your email with anyone else.)</small
+          >
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+            name="password"
+          />
+        </div>
+        <br />
+        <div>
+          <label for="phone">Enter Your Phone Number</label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="91 ********"
+            pattern="[0-9]{2}-[0-9]{10}"
+            required
+            name="Phonenumber"
+          /><br />
+        </div>
+        <div>
+          <br />
+          <label for="Age">Age</label>
+          <input type="age" id="Age" name="Age" /><br />
+        </div>
+        <br />
+        <h1>Address:</h1>
+        <div class="form-group">
+          <label for="Fullname">Address line 1</label>
+          <input
+            class="form-control form-control-lg"
+            type="text"
+            id="Fullname"
+            name="Addressline1"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="Fullname">Address line 2</label>
+          <input
+            class="form-control form-control-lg"
+            type="text"
+            id="Fullname"
+            name="Addressline2"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="Fullname">City/District</label>
+          <input
+            class="form-control form-control-lg"
+            type="text"
+            id="Fullname"
+            name="CityDistrict"
+          />
+        </div>
+        <br />
+        <div class="form-group">
+          <label for="Fullname">State</label>
+          <input
+            class="form-control form-control-lg"
+            type="text"
+            id="Fullname"
+            name="State"
+          />
+        </div>
+        <br />
+        <button
+          class="btn btn-primary"
+          type="submit"
+          
+        >
+          Submit form
+        </button>
+      </form>
+    </center>
+  </body>
+</html>
