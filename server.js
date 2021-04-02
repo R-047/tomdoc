@@ -43,6 +43,7 @@ app.post("/login_check", (req, res) => {
       client.connect();
       console.log("CONNECTED TO DATABASE");
       var q = `select type from applicants where email='${email}' and password='${pwd}'`;
+      let result = null;
       client.query(q, (err, resul) => {
         console.log("CONNECTED TO DATABASE");
         // if(err) throw err;
@@ -55,11 +56,11 @@ app.post("/login_check", (req, res) => {
       if (!result.length > 0) {
         res.send("user doesnt exist");
       }
-      if (result.length > 0 && result[0].type === 0) {
+      if (result.length > 0 && result[0].type === false) {
         res.sendFile(path.join(__dirname, "public", "pp.html"));
         res.cookie("userPpEmail", email);
         res.cookie("userPpType", 0);
-      } else if (result.length > 0 && result[0].type === 1) {
+      } else if (result.length > 0 && result[0].type === true) {
         res.sendFile(path.join(__dirname, "public", "doc.html"));
         res.cookie("userDocEmail", email);
         res.cookie("userDocType", 1);
