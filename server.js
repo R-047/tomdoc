@@ -19,8 +19,8 @@ httpserver.listen(PORT, () => console.log("listening on port " + PORT));
 //  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
 
-//change the values
-const client = new Client({
+
+pgconnObj = {
   host: "ec2-3-211-37-117.compute-1.amazonaws.com",
   port: 5432,
   user: "clithoykftlfbo",
@@ -28,8 +28,9 @@ const client = new Client({
   database: "d8ssbbn6mofnk9",
   ssl: {
     rejectUnauthorized: false,
-  },
-});
+  }
+}
+let client = null;
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -40,14 +41,14 @@ app.post("/login_check", (req, res) => {
   console.log(email + " " + pwd);
 
   //connect to database and perform querry and close connection
+  client = new Client(pgconnObj);
   client.connect();
   console.log("CONNECTED TO DATABASE");
   var q = `select type from applicants where email='${email}' and password='${pwd}'`;
   
   client.query(q, (err, resul) => {
     console.log("CONNECTED TO DATABASE");
-    // if(err) throw err;
-    console.log(resul);
+    console.log(resul, err);
     var result = resul.rows;
     console.log(result);
     if (!result.length > 0) {
@@ -64,6 +65,8 @@ app.post("/login_check", (req, res) => {
     }
     client.end();
   });
+
+  
 });
 
 app.post("/create_user", (req, res) => {
@@ -102,6 +105,7 @@ app.post("/create_user", (req, res) => {
   );
 
   //connect to database and perform querry and close connection
+  client = new Client(pgconnObj);
   client.connect();
   var q = `insert into applicants(email, type, loclat, loclong, password, locationname) values('${cemailId}', ${type}, ${loclat}, ${loclong}, '${cpassword}', '${locname}')`;
   client.query(q, (err, result) => {
