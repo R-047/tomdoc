@@ -1,27 +1,47 @@
 
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap');
+.logo {
+	margin-left: 40px;
+	margin-top: 30px;
+}
+.img {
 
-	background-image: url("../res/dogimg.jpg") ;
-	background-size: cover;
+	background-image: url("../res/pinkdog.png") ;
+	background-size: contain;
 	background-repeat: no-repeat;
-	background-position: 7px -100px;
+	position: absolute;
+	left: 1275px;
+	top: 175px;
+	height: 500px;
+	width: 500px;
 }
 
 header ul {
-	font:18px "Gadugi";
-	font-weight: bold;
-	padding: 10px 10px 10px 300px;
-	margin: 10px 10px 10px 10px;
+	font-family: 'Exo 2', sans-serif;
+	font-size: 18px;
+	color: white;
+	position: relative;
+	left: 1000px;
+	top: 10px;
 	
 }
+
 
 header li {
 	float:left;
 	list-style-type: none;
-	padding: 10px 10px 10px 120px;
-	margin: 10px 10px 10px 10px;
+	padding: 10px 0px 10px 80px;
+	margin: 10px 0px 10px 10px;
 	display: inline;
+
 	
+}
+
+
+
+body {
+	background-color: #FDF5F2;
 }
 
 header nav {
@@ -29,10 +49,12 @@ header nav {
 }
 
 .tagline {
-  font: 30px Gadugi;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
   font-weight: bold;
-  padding-top: 275px;
-  padding-left: 50px;
+  padding-top: 350px;
+  padding-left: 75px;
+  color: #304F63;
 
 }
 
@@ -56,12 +78,15 @@ header nav {
 
 .quest button{
 	
-	background-color: #2F5061;
+	background-color: #DB6565;
 	color: white;
-	border-radius: 15px;
 	border-color: transparent;
-	padding: 10px 10px 10px 10px;
+	position: absolute;
+	top: 725px;
+	left: 1425px;
+	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
+	padding: 10px 10px 10px 10px;
 
 }
 
@@ -74,17 +99,18 @@ img {
 }
 
 .buttons{
-	padding-left: 60px;
+	padding-left: 80px;
 }
 
 .buttons button{
-	background-color: #9F2B00;
-	color: white;
-	border-radius: 10px;
+	background-color: #F6D2C0;
+	color: #304F63;
 	font-size: 20px;
-	margin-right: 10px;
+	margin-right: 20px;
 	border-color: transparent;
-	padding: 10px 10px 10px 10px;
+	padding: 10px 20px 10px 10px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 20px;
 
 }
 
