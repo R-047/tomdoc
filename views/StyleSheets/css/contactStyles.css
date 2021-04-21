@@ -1,0 +1,69 @@
+*{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+}
+
+body, html {
+    height: 100%;
+  }
+
+body {
+    background-image: url("../res/catback1.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+
+.container {
+    margin: auto;
+    width: 500px;
+    
+    padding: 15rem 2rem;
+    position: absolute;
+    left: 50em;
+  }
+  
+  #my-form {
+    padding: 2rem;
+    background: #f4f4f4;
+  }
+  
+  #my-form label {
+    display: block;
+  }
+  
+  #name, #email {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+
+    /* border: 1px solid #ccc; */
+  }
+
+  #message {
+    width: 100%;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    padding: 8px;
+    margin-bottom: 10px;  
+  }
+
+  .btn{
+      margin-top: 10px;
+      padding: 5px 10px 5px 10px;
+      width: 25%;
+      font: 15px helvetica;
+      background-color: white;
+      border-radius: 5px;
+      border: 0px ;
+  } 
+  
+

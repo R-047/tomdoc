@@ -113,7 +113,8 @@
     </div>
 
     <script>
-      const socket = new WebSocket("wss://mighty-shelf-60355.herokuapp.com");
+      //mighty-shelf-60355.herokuapp.com
+      const socket = new WebSocket("ws://localhost:8080");
 
       // Connection opened
       socket.addEventListener("open", function (event) {
@@ -135,7 +136,7 @@
             UsersAppointmentReq = jsonReqForReqType;
             document.getElementById("UserAppReq").style.display = "block";
             document.getElementById("username").textContent =
-            UsersAppointmentReq['ppemail'];
+            UsersAppointmentReq['ppname'];
             displayTimeout = setTimeout(function () {
               document.getElementById("UserAppReq").style.display = "none";
               var NoResponse = `{"reqType":"docResponse","response":"wait","to":"${UsersAppointmentReq['ppemail']}", "from":"${UsersAppointmentReq['docsName']}"}`;//json_for_doctorsResponse: {"reqType":"docResponse","response":"yes/no/wait"}

@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    .nav-controls {
+      position: absolute;
+      top: 190px;
+      left: 500px;
+    }
+
+    .nav-controls a {
+      margin-left: 20px;
+      cursor: pointer;
+    }
+
+    hr.new1 {
+      border-top: 5px solid black;
+      width: 60px;
+      position: relative;
+      left: 18px;
+      transition: transform 500ms ease-in-out 25ms;
+    }
+
+    .lists-container {
+      width: 900px;
+      height: 600px;
+      overflow: hidden;
+      position: absolute;
+      top: 210px;
+      left: 75px;
+      padding-top: 5px;
+
+    }
+
+
+
+    .list-container {
+      list-style: none;
+      width: 800px;
+      height: 500px;
+      overflow: hidden;
+      overflow-y: scroll;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      transition: transform 500ms ease-in-out 25ms;
+    }
+
+
+
+    .list-container2 {
+      list-style: none;
+      width: 800px;
+      height: 500px;
+      overflow: hidden;
+      overflow-y: scroll;
+      position: absolute;
+      top: 100px;
+      left: 1000px;
+      transition: transform 500ms ease-in-out 25ms;
+    }
+
+    .divitemstyle {
+      top: 0px;
+      left: 0px;
+      width: 743px;
+      height: 97px;
+      border: 1px solid #000000;
+      background: rgba(255, 255, 255, 0);
+      margin-bottom: 20px;
+      border-radius: 10px;
+      padding-left: 30px;
+    }
+
+    .bmpTextDivstyle {
+      top: 0px;
+      left: 0px;
+      width: 541px;
+      height: 53px;
+      background: rgba(255, 255, 255, 0);
+    }
+
+    .bmpstyle {
+      top: 0px;
+      left: 0px;
+      width: 49px;
+      height: 49px;
+      -ms-border-radius: 24.5px / 24.5px;
+      -o-border-radius: 24.5px / 24.5px;
+      -moz-border-radius: 24.5px / 24.5px;
+      -webkit-border-radius: 24.5px / 24.5px;
+      border-radius: 24.5px / 24.5px;
+      background: rgba(196, 196, 196, 1);
+      margin: 0px 0px 0px 0px;
+      padding: 0px 0px 0px 0px;
+    }
+
+    .textcontentstyle {
+      top: 0px;
+      left: 0px;
+      width: 455px;
+      height: 53px;
+      background: rgba(255, 255, 255, 0);
+    }
+
+    .datetimeTextStyle {
+      top: 28px;
+      left: 0px;
+      width: 500px;
+      height: 39.5px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 21px;
+      text-align: left;
+      color: #000000;
+    }
+
+    .appointmentTextStyle {
+      top: 0px;
+      left: 0px;
+      width: 700px;
+      height: 45px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 24px;
+      text-align: left;
+      color: #000000;
+    }
+
+    .card {
+      position: fixed;
+      border-radius: 10px;
+      width: auto;
+      height: auto;
+      padding: 10px 10px 10px 10px;
+      background: white;
+      text-align: center;
+      top: 150px;
+      left: 500px;
+      display: none;
+    }
+
+    .btn-danger {
+      margin-left: 20px;
+    }
+
+    .progress {
+      margin-top: 30px;
+    }
+
+    /* ******************************************** */
+    #details-container {
+      top: 175px;
+      left: 1306px;
+      width: 477px;
+      height: 710px;
+      position: absolute;
+      align-items: center;
+      text-align: center;
+      vertical-align: middle;
+      align-content: center;
+    }
+
+    #details-container div {
+      position: absolute;
+      align-content: center;
+      align-items: center;
+      text-align: center;
+      display: block;
+    }
+
+
+    #display-pic {
+      top: 96px;
+      left: 124px;
+      width: 230px;
+      height: 230px;
+      -ms-border-radius: 115px / 115px;
+      -o-border-radius: 115px / 115px;
+      -moz-border-radius: 115px / 115px;
+      -webkit-border-radius: 115px / 115px;
+      border-radius: 115px / 115px;
+      background: rgba(196, 196, 196, 1);
+    }
+
+    #ppname-display {
+      top: 355px;
+      left: 146px;
+      width: 203px;
+      height: 67px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 36px;
+      text-align: left;
+      color: #000000;
+    }
+
+    #details-container-title {
+      top: 23px;
+      left: 70px;
+      width: 350px;
+      height: 67px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 36px;
+      text-align: left;
+      color: #000000;
+    }
+
+    #pets-name {
+      top: 397px;
+      left: 30%;
+      display: inline-block;
+      width: 200px;
+      height: 45px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 24px;
+      text-align: left;
+      color: #000000;
+      align-self: center;
+    }
+
+    #location-button {
+      top: 594px;
+      left: 154px;
+      width: 170px;
+      height: 39px;
+      border: 1px solid #000000;
+      cursor: pointer;
+    }
+
+    #location-text {
+      top: 6px;
+      left: 10px;
+      width: 153px;
+      height: 40px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 18px;
+      text-align: center;
+      color: #000000;
+    }
+
+    #time {
+      top: 454px;
+      left: 195px;
+      width: 99px;
+      height: 45px;
+      overflow: hidden;
+      font-family: Roboto;
+      font-size: 24px;
+      text-align: left;
+      color: #000000;
+    }
+
+    #prescribe-btn {
+      top: 508px;
+      left: 168px;
+      width: 53px;
+      height: 53px;
+      -ms-border-radius: 26.5px / 26.5px;
+      -o-border-radius: 26.5px / 26.5px;
+      -moz-border-radius: 26.5px / 26.5px;
+      -webkit-border-radius: 26.5px / 26.5px;
+      border-radius: 26.5px / 26.5px;
+      background: rgba(196, 196, 196, 1);
+      cursor: pointer;
+    }
+
+    #casesheet-btn {
+      top: 508px;
+      left: 258px;
+      width: 53px;
+      height: 53px;
+      -ms-border-radius: 26.5px / 26.5px;
+      -o-border-radius: 26.5px / 26.5px;
+      -moz-border-radius: 26.5px / 26.5px;
+      -webkit-border-radius: 26.5px / 26.5px;
+      border-radius: 26.5px / 26.5px;
+      background: rgba(196, 196, 196, 1);
+    }
+
+    /* prescribe container */
+    #prescription-container {
+      position: absolute;
+      width: 446px;
+      height: 652px;
+      left: 900px;
+      top: 100px;
+      display: none;
+      background: #ffffff;
+      box-shadow: -1px 1px 28px -11px #000000;
+      border-radius: 36px;
+
+    }
+
+    #title-textbox {
+      position: absolute;
+      width: 350px;
+      height: 30px;
+      left: 46px;
+      top: 93px;
+      border: 0px;
+      border-bottom: 1px solid #000000;
+      outline: none;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    #presc-textarea {
+      position: absolute;
+      width: 344px;
+      height: 430px;
+      left: 51px;
+      top: 134px;
+
+      border: 0px solid #000000;
+      box-sizing: border-box;
+      outline: none;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    #save-btn-container {
+      position: absolute;
+      width: 175px;
+      height: 49px;
+      left: 132px;
+      top: 582px;
+
+      background: radial-gradient(100% 100% at 50.38% 0%,
+          #2420ee 0%,
+          rgba(109, 106, 230, 0.66) 100%);
+      /* border: 1px solid #000000; */
+      box-sizing: border-box;
+      border-radius: 21px;
+      cursor: pointer;
+    }
+
+    #save-text {
+      position: absolute;
+      width: 50px;
+      height: 28px;
+      left: 62px;
+      top: 11px;
+
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 28px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+
+      color: #ffffff;
+    }
+
+    /* close button */
+    .close {
+      position: absolute;
+      right: 32px;
+      top: 32px;
+      width: 32px;
+      height: 32px;
+      opacity: 0.3;
+    }
+
+    .close:hover {
+      opacity: 1;
+    }
+
+    .close:before,
+    .close:after {
+      position: absolute;
+      left: 15px;
+      content: " ";
+      height: 33px;
+      width: 2px;
+      background-color: #333;
+    }
+
+    .close:before {
+      transform: rotate(45deg);
+    }
+
+    .close:after {
+      transform: rotate(-45deg);
+    }
+
+    .placeholder-style {
+      position: relative;
+      top: 25%;
+      left: 30%;
+      color: rgb(59, 59, 59);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-controls">
+    <a href="#"
+      onclick="document.getElementById('slide').style.transform='translateX(0%)';document.getElementById('list-container-id').style.transform='translateX(0%)';document.getElementById('list-container-id2').style.transform='translateX(0%)'">today's</a>
+    <a href="#"
+      onclick="document.getElementById('slide').style.transform='translateX(75px)';document.getElementById('list-container-id').style.transform='translateX(-1000px)';document.getElementById('list-container-id2').style.transform='translateX(-900px)'">previous</a>
+    <hr class="new1" id="slide">
+  </div>
+  <div class="lists-container">
+    <ul class="list-container" id="list-container-id">
+      <% if (data.todaysAppArr==null) { %>
+        <h6 id="list-placeholder" class="placeholder-style"> no appointments scheduled for today</h6>
+        <%} else { %>
+          <% for(var i=0; i < data.todaysAppArr.length; i++) { %>
+            <li>
+              <div class="divitemstyle">
+                <div class="bmpTextDivstyle">
+                  <div class="textcontentstyle">
+                    <div class="appointmentTextStyle">appointment booked by <%= data.todaysAppArr[i].ppname %> petsname
+                        <%=data.todaysAppArr[i].pname%>
+                    </div>
+                    <div class="datetimeTextStyle">
+                      <%=data.todaysAppArr[i].date%>
+                        <%=data.todaysAppArr[i].time%> pm
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            
+            <% } %>
+              <% } %>
+
+
+
+    </ul>
+    <ul class="list-container2" id="list-container-id2">
+      <% data.prevAppArr.forEach(result=> {%>
+        <li>
+          <div class="divitemstyle">
+            <div class="bmpTextDivstyle">
+              <div class="textcontentstyle">
+                <div class="appointmentTextStyle">appointment booked by <%= result.ppname %> pets name <%=result.pname%>
+                </div>
+                <div class="datetimeTextStyle">
+                  <%=result.date%>
+                    <%=result.time%> pm
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <% }); %>
+
+    </ul>
+  </div>
+
+  <div id="details-container">
+    <div id="display-pic"></div>
+    <div id="ppname-display">
+      basil cornel
+    </div>
+    <div id="details-container-title">
+      Today's Appointment
+    </div>
+    <div id="pets-name">
+      pets-name
+    </div>
+
+    <div id="location-button" onclick="redirectToMaps()">
+      <div id="location-text">
+        location
+      </div>
+
+    </div>
+    <div id="time">
+      5:30 pm
+    </div>
+    <div id="prescribe-btn" onclick="showPopUp('prescription-container')"></div>
+    <div id="casesheet-btn"></div>
+
+  </div>
+
+  <div id="prescription-container">
+    <a href="#" class="close" onclick="closePopUp('prescription-container')"></a>
+    <!-- <div id="title-textbox"></div> -->
+    <input id="title-textbox" type="text" class="form-control" placeholder="title" aria-label="Username"
+      aria-describedby="addon-wrapping" />
+
+    <!-- <div id="presc-textarea"></div> -->
+    <textarea class="form-control" placeholder="leave the prescription here" id="presc-textarea"></textarea>
+
+    <div id="save-btn-container" onclick="onPrescSave()">
+      <div id="save-text">save</div>
+    </div>
+  </div>
+
+
+
+  <div class="card" id="UserAppReq">
+    <div class="card-body">
+      <h5 class="card-title">Appointment</h5>
+      <h6 class="card-subtitle mb-2 text-muted">You have an appointment</h6>
+      <p class="card-text" id="username"></p>
+      <span><button type="button" class="btn btn-success" id="accBtn" onclick="acceptResponse()">
+          accept</button><button type="button" class="btn btn-danger" id="rejBtn" onclick="rejectResponse()">
+          reject
+        </button></span>
+      <div class="progress">
+        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+        </div>
+      </div>
+    </div>
+  </div>
+  <button onclick="add()">DONT CLICK! (TEST USE ONLY)</button>
+  <!-- <script src="ejs.min.js"></script> -->
+  <script>
+
+    //mighty-shelf-60355.herokuapp.com
+    const socket = new WebSocket("ws://localhost:8080");
+
+    // Connection opened
+    socket.addEventListener("open", function (event) {
+      var responseToRegisterClient = `{"reqType":"register", "userEmail":"${getCookie("userDocEmail")}","userType":"${getCookie(
+        "userDocType")}"}`;
+      socket.send(responseToRegisterClient);
+    });
+
+    // Listen for messages
+    let UsersAppointmentReq = null;
+    socket.addEventListener("message", function (event) {
+      console.log("Message from server ", event.data);
+      var jsonReqForReqType = JSON.parse(event.data);
+      var choice = jsonReqForReqType["resType"];
+      switch (choice) {
+        case "AppReq":
+          //show pop up and delay for 10s after 10s hide the pop up and send wait
+          notify();
+          UsersAppointmentReq = jsonReqForReqType;
+          document.getElementById("UserAppReq").style.display = "block";
+          document.getElementById("username").textContent =
+            UsersAppointmentReq['ppname'];
+          displayTimeout = setTimeout(function () {
+            document.getElementById("UserAppReq").style.display = "none";
+            var NoResponse = `{"reqType":"docResponse","response":"wait","to":"${UsersAppointmentReq['ppemail']}", "from":"${UsersAppointmentReq['docsName']}"}`;//json_for_doctorsResponse: {"reqType":"docResponse","response":"yes/no/wait"}
+            socket.send(NoResponse);
+            console.log("response sent: " + NoResponse);
+          }, 10000);
+          break;
+      }
+    });
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == " ") {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+
+    //show Notifications function
+    function notify() {
+      if (Notification.permission === "granted") {
+        showNotifications();
+
+      }
+      else if (Notification.permission !== "denied") {
+        Notification.requestPermission().then(function (permission) {
+          if (permission === "granted") {
+            showNotifications();
+
+          }
+          else {
+            alert("please allow the notifications to get appointment requests.");
+          }
+        });
+      }
+    }
+
+    function showNotifications() {
+      var options = {
+        body: 'You have an appointment request. Please choose to accept or reject',
+        vibrate: [200, 100, 200]
+      }
+      var notification = new Notification("Incoming Appointment!", options);
+      notification.onclick = function (event) {
+        event.preventDefault();
+        window.focus();
+      }
+    }
+
+    function acceptResponse() {
+      var ResponseYes = `{"reqType":"docResponse","response":"yes","to":"${UsersAppointmentReq['ppemail']}","from":"${UsersAppointmentReq['docsName']}","time":"${UsersAppointmentReq.timeForApp}"}`;
+      socket.send(ResponseYes);
+      console.log("response sent: " + ResponseYes);
+      clearTimeout(displayTimeout);
+
+      //********************************************
+      //ASYNCLSY SEND THIS APPOINTMENT TO DB
+      //********************************************
+      // | doc_id | pet_id | a_date | a_time | prescription | review_id
+      var current_datetime = new Date();
+      var formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth()) + "-" + current_datetime.getDate();
+      var payloadForAppReg = {
+        docid: "<%=data.docsProp.docID%>",
+        petid: UsersAppointmentReq['petid'],
+        appDate: formatted_date,
+        appTime: UsersAppointmentReq['timeForApp'],
+        pres: null,
+        review_id: null
+      }
+
+      var params = `appointmentData={"reqType":"appRegReq", "payload":${JSON.stringify(payloadForAppReg)}}`;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/docsRoute', true);
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.onload = () => {
+        if (xhr.readyState == 4) {
+          console.log(xhr.responseText);
+          add(JSON.parse(xhr.responseText).appId);
+        }
+
+      };
+      xhr.send(params);
+      document.getElementById("UserAppReq").style.display = "none";
+      document.getElementById('details-container').style.display = "block";
+      document.getElementById('list-placeholder').style.display = "none";
+      // add(appID);
+
+    }
+
+    function rejectResponse() {
+      var ResponseNo = `{"reqType":"docResponse","response":"no","to":"${UsersAppointmentReq['ppemail']}","from":"${UsersAppointmentReq['docsName']}"}`;
+      socket.send(ResponseNo);
+      console.log("response sent: " + ResponseNo);
+      clearTimeout(displayTimeout);
+      document.getElementById("UserAppReq").style.display = "none";
+    }
+
+
+    //**************************************************
+    //storing todays appointments in this array
+    let currSelIndex = 0;
+    var ArrOfTodaysApps = [];
+    console.log("<%=data.todaysAppArr%>");
+    if ("<%=data.todaysAppArr%>" == "") {
+      document.getElementById('details-container').style.display = "none";
+
+
+    } else {
+      <% for (var i = 0; data.todaysAppArr !== null && i < data.todaysAppArr.length; i++) {%>
+        var dataDupli = {
+          appointmentID: "<%=data.todaysAppArr[i].appointmentID%>",
+          ppname: "<%=data.todaysAppArr[i].ppname%>",
+          pname: "<%=data.todaysAppArr[i].pname%>",
+          date: "<%=data.todaysAppArr[i].date%>",
+          time: "<%=data.todaysAppArr[i].time%>",
+          userLat: "<%=data.todaysAppArr[i].userLat%>",
+          userLong: "<%=data.todaysAppArr[i].userLong%>",
+        }
+        ArrOfTodaysApps.push(dataDupli);
+      <%} %>
+        document.getElementById('details-container-title').innerText = "Today's Appointment";
+      document.getElementById('ppname-display').innerText = ArrOfTodaysApps[0].ppname;
+      document.getElementById('pets-name').innerText = ArrOfTodaysApps[0].pname;
+      document.getElementById('location-button').style.display = "block";
+      document.getElementById('prescribe-btn').style.display = "block";
+      document.getElementById('casesheet-btn').style.display = "block";
+      document.getElementById('time').innerText = ArrOfTodaysApps[0].time;
+
+    }
+
+
+    //setting the detailed view to first item in todays appointments array
+
+
+
+    //storing previous appointments in this array
+    var ArrOfPrevApps = [];
+    <% data.prevAppArr.forEach(element => {%>
+        var dataDupli = {
+        ppname: "<%=element.ppname%>",
+        pname: "<%=element.pname%>",
+        date: "<%=element.date%>",
+        time: "<%=element.time%>",
+      }
+      ArrOfPrevApps.push(dataDupli);
+      <%});  %>
+
+
+      //adding events to all list items in the todays apps list
+      let listitem = document.querySelectorAll("#list-container-id li");
+    var todaysAppsListArr = [], index;
+
+    listitem.forEach(ele => {
+      todaysAppsListArr.push(ele.innerHTML);
+    })
+
+    listitem.forEach(element => {
+      element.onclick = () => {
+        index = todaysAppsListArr.indexOf(element.innerHTML);
+        displayDetails(index, ArrOfTodaysApps);
+      }
+    });
+
+    //adding events to all list items in the prev apps list
+    let listitem2 = document.querySelectorAll("#list-container-id2 li");
+    var prevAppsListArr = [], index2;
+
+    listitem2.forEach(ele => {
+      prevAppsListArr.push(ele.innerHTML);
+    })
+
+    listitem2.forEach(element => {
+      element.onclick = () => {
+        index2 = prevAppsListArr.indexOf(element.innerHTML);
+        displayDetails(index2, ArrOfPrevApps);
+        document.getElementById('details-container').style.display = "block";
+      }
+    });
+
+
+
+    function add(appID) {
+      refreshList(appID);
+      displayDetails(currSelIndex, ArrOfTodaysApps);
+      console.log("after completion of add function: ");
+      console.log(ArrOfTodaysApps);
+    }
+
+
+    function displayDetails(index, arr) {
+      // ppname-display, details-container-title, pets-name, location-button, time
+      if (arr[index].hasOwnProperty('userLat')) {
+        console.log(arr[index].ppname + " " + arr[index].pname + " " + arr[index].date + " " + arr[index].time);
+        document.getElementById('details-container-title').innerText = "Today's Appointment";
+        document.getElementById('ppname-display').innerText = arr[index].ppname;
+        document.getElementById('pets-name').innerText = arr[index].pname;
+        document.getElementById('location-button').style.display = "block";
+        document.getElementById('prescribe-btn').style.display = "block";
+        document.getElementById('casesheet-btn').style.display = "block";
+        document.getElementById('time').innerText = arr[index].time;
+        currSelIndex = index;
+      } else {
+        console.log(arr[index].ppname + " " + arr[index].pname + " " + arr[index].date + " " + arr[index].time);
+        document.getElementById('details-container-title').innerText = "Previous Appointment";
+        document.getElementById('ppname-display').innerText = arr[index].ppname;
+        document.getElementById('pets-name').innerText = arr[index].pname;
+        document.getElementById('location-button').style.display = "none";
+        document.getElementById('prescribe-btn').style.display = "none";
+        document.getElementById('casesheet-btn').style.display = "none";
+        document.getElementById('time').innerText = arr[index].time;
+      }
+    }
+
+    function redirectToMaps() {
+      var orlat = "<%=data.docsProp.docLAT%>";
+      var orlong = "<%=data.docsProp.docLONG%>";
+      var destlat = ArrOfTodaysApps[currSelIndex].userLat;
+      var destlong = ArrOfTodaysApps[currSelIndex].userLong;
+      window.open(`https://www.google.com/maps/dir/${orlat},${orlong}/${destlat},${destlong}/@${orlat},${orlong},12z`);
+    }
+
+    function closePopUp(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    function showPopUp(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+
+
+
+    function onPrescSave() {
+      console.log("logging on presc save: ");
+      console.log(ArrOfTodaysApps);
+
+      add2();
+
+      var AppUpdatePayload = {
+        appidtosend: ArrOfTodaysApps[currSelIndex].appointmentID,
+        prescTitle: document.getElementById("title-textbox").value,
+        presc: document.getElementById('presc-textarea').value,
+
+      }
+
+      var params = `appointmentData={"reqType":"appUpdateReq", "payload":${JSON.stringify(AppUpdatePayload)}}`;
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/docsRoute', true);
+      xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+      xhr.send(params);
+
+      if (ArrOfTodaysApps.length == 1) {
+
+        deleteLI();
+        currSelIndex = 0;
+        document.getElementById('prescription-container').style.display = "none";
+        document.getElementById('details-container').style.display = "none";
+        var ph = document.createElement("H6");
+        ph.textContent = "no appointments";
+        ph.className = "placeholder-style";
+        var list = document.getElementById("list-container-id");
+        list.appendChild(ph);
+
+
+      } else {
+        console.log(ArrOfTodaysApps);
+        deleteLI();
+        currSelIndex = 0;
+        document.getElementById('details-container-title').innerText = "Today's Appointment";
+        document.getElementById('ppname-display').innerText = ArrOfTodaysApps[0].ppname;
+        document.getElementById('pets-name').innerText = ArrOfTodaysApps[0].pname;
+        document.getElementById('location-button').style.display = "block";
+        document.getElementById('prescribe-btn').style.display = "block";
+        document.getElementById('casesheet-btn').style.display = "block";
+        document.getElementById('time').innerText = ArrOfTodaysApps[0].time;
+
+        //********************************************
+        //ASYNCLSY SEND THE PRESCRIPTION TO DB
+        //UPDATE THE APP COMPLETEION STATUS IN DB
+        //********************************************
+
+
+
+        document.getElementById('prescription-container').style.display = "none";
+
+      }
+
+    }
+
+    function deleteLI() {
+      console.log("logging on just before deleting: ");
+      console.log(ArrOfTodaysApps);
+      ArrOfTodaysApps.shift(currSelIndex);
+      var lenofList = listitem.length;
+      for (var i = 0; i < lenofList; i++) {
+        listitem[i].parentNode.removeChild(listitem[i]);
+      }
+      ArrOfTodaysApps.forEach(element => {
+        createNewListItem(element.ppname, element.pname, element.date, element.time);
+      })
+      refreshListArr();
+    }
+
+    function refreshListArr() {
+      todaysAppsListArr.length = 0;
+      listitem = document.querySelectorAll("#list-container-id li");
+      // fill array
+      for (var i = 0; i < listitem.length; i++) {
+        todaysAppsListArr.push(listitem[i].innerHTML);
+      }
+      listitem.forEach(element => {
+        element.onclick = () => {
+          index = todaysAppsListArr.indexOf(element.innerHTML);
+          displayDetails(index, ArrOfTodaysApps);
+        }
+      })
+      currSelIndex = 0;
+    }
+
+
+    function refreshList(appID) {
+      let current_datetime = new Date()
+      let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth()+1) + "-" + current_datetime.getDate();
+      ArrOfTodaysApps.push({
+        appointmentID: appID,
+        ppname: UsersAppointmentReq.ppname,
+        pname: UsersAppointmentReq.petsname,
+        date: formatted_date,
+        time: UsersAppointmentReq.timeForApp,
+        userLat: UsersAppointmentReq.locationLat,
+        userLong: UsersAppointmentReq.locationLong,
+      });
+
+      console.log("logging ArrOfTodaysApps: ");
+      console.log(ArrOfTodaysApps);
+
+      ArrOfTodaysApps.sort((a, b) => {
+        if (a.time > b.time) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      var lenofList = listitem.length;
+      for (var i = 0; i < lenofList; i++) {
+        listitem[i].parentNode.removeChild(listitem[i]);
+      }
+      ArrOfTodaysApps.forEach(element => {
+        createNewListItem(element.ppname, element.pname, element.date, element.time);
+      })
+      refreshListArr();
+    }
+
+
+    function createNewListItem(ppname, pname, date, time) {
+      var newItem = document.createElement("LI");
+      var divItem = document.createElement("DIV");
+      divItem.className = "divitemstyle";
+
+      var bmpTextDiv = document.createElement("DIV");
+      bmpTextDiv.className = "bmpTextDivstyle";
+
+      var bmp = document.createElement("DIV");
+      bmp.className = "bmpstyle";
+      var textContent = document.createElement("DIV");
+
+      textContent.className = "textcontentstyle";
+      var appointmentText = document.createElement("DIV");
+      appointmentText.className = "appointmentTextStyle";
+      appointmentText.innerText = `appointment booked by ${ppname} for his pet ${pname}`;
+
+      var datetimeText = document.createElement("DIV");
+      datetimeText.className = "datetimeTextStyle";
+      datetimeText.innerText = `${date}   ${time}`;
+      textContent.appendChild(appointmentText);
+      textContent.appendChild(datetimeText);
+
+      // bmpTextDiv.appendChild(bmp);
+      bmpTextDiv.append(textContent);
+
+      divItem.appendChild(bmpTextDiv);
+      newItem.appendChild(divItem);
+
+      var list = document.getElementById("list-container-id");
+      list.appendChild(newItem);
+    }
+
+
+
+    //*************************************************************
+
+    function refreshList2() {
+      ArrOfPrevApps.push(
+       ArrOfTodaysApps[currSelIndex]
+      );
+      console.log("logging just completed app: ");
+      console.log(ArrOfTodaysApps[currSelIndex]);
+
+
+      //*****************************sort according to date 
+      ArrOfPrevApps.sort((a, b) => {
+        
+        var d1 = new Date(a.date);
+        var d2 = new Date(b.date);
+        if (d1 < d2) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      var lenofList = listitem2.length;
+      for (var i = 0; i < lenofList; i++) {
+        listitem2[i].parentNode.removeChild(listitem2[i]);
+      }
+      ArrOfPrevApps.forEach(element => {
+        createNewListItem2(element.ppname, element.pname, element.date, element.time);
+      })
+      refreshListArr2();
+    }
+
+
+    function refreshListArr2() {
+      prevAppsListArr.length = 0;
+      listitem2 = document.querySelectorAll("#list-container-id2 li");
+      // fill array
+      for (var i = 0; i < listitem2.length; i++) {
+        prevAppsListArr.push(listitem2[i].innerHTML);
+      }
+      listitem2.forEach(element => {
+        element.onclick = () => {
+          var index = prevAppsListArr.indexOf(element.innerHTML);
+          displayDetails(index, ArrOfPrevApps);
+        }
+      })
+    }
+
+    function add2() {
+      refreshList2();
+    }
+
+    function createNewListItem2(ppname, pname, date, time) {
+      var newItem = document.createElement("LI");
+      var divItem = document.createElement("DIV");
+      divItem.className = "divitemstyle";
+
+      var bmpTextDiv = document.createElement("DIV");
+      bmpTextDiv.className = "bmpTextDivstyle";
+
+      var bmp = document.createElement("DIV");
+      bmp.className = "bmpstyle";
+      var textContent = document.createElement("DIV");
+
+      textContent.className = "textcontentstyle";
+      var appointmentText = document.createElement("DIV");
+      appointmentText.className = "appointmentTextStyle";
+      appointmentText.innerText = `appointment booked by ${ppname} for his pet ${pname}`;
+
+      var datetimeText = document.createElement("DIV");
+      datetimeText.className = "datetimeTextStyle";
+      datetimeText.innerText = `${date}   ${time}`;
+      textContent.appendChild(appointmentText);
+      textContent.appendChild(datetimeText);
+
+      // bmpTextDiv.appendChild(bmp);
+      bmpTextDiv.append(textContent);
+
+      divItem.appendChild(bmpTextDiv);
+      newItem.appendChild(divItem);
+
+      var list = document.getElementById("list-container-id2");
+      list.appendChild(newItem);
+    }
+
+
+  </script>
+</body>
+
+</html>

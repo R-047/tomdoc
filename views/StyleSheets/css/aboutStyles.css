@@ -1,0 +1,152 @@
+/* for card 1 */
+*{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    border: 0px 0px 0px 0px;
+
+}
+
+.famimg {
+    background-image: url("../res/fam.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    height: 700px;
+    animation: blurfam 2s linear forwards;
+}
+ @keyframes blurfam{
+     0%{
+        filter: blur(0px);
+     }
+     100%{
+        filter: blur(3px);
+     }
+ }
+
+ .text {
+     font: 25px helvetica;
+     font-weight: bold;
+     padding: 0px 0px 0px 0px;
+     position: absolute;
+     top: 200px;
+     left: 350px;
+     text-align: center;
+     color: aqua;
+     display: contents;
+     
+ }
+
+ @keyframes textAnime {
+     0%{
+         opacity: 0;
+     }
+     100%{
+         opacity: 10;
+     }
+ }
+
+.card1 p {
+    font: 15px helvetica;
+    position: relative;
+    text-align: center;
+    top: 275px;
+    padding-bottom: 50px;
+}
+
+.card1 h2 {
+    font: 25px helvetica;
+    position: relative;
+    text-align: center;
+    top: 25px;
+    padding-bottom: 10px;
+}
+
+.card1 {
+    background-image: url("../res/card1.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: 70px;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    left: 100px;
+    top: 600px;
+    background-color:  white;
+    padding-bottom: 300px;
+    /* padding-top: 50px; */
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px  black;
+}
+
+
+
+
+
+
+
+/* for card 2 */
+.card2 p{
+    font: 15px helvetica;
+    position: relative;
+    text-align: center;
+    top: 275px;
+    padding-bottom: 50px;
+}
+.card2 h2{
+    font: 25px helvetica;
+    position: relative;
+    text-align: center;
+    top: 25px;
+    padding-bottom: 10px;
+}
+.card2 {
+    background-image: url("../res/card2.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: 70px;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    left: 600px;
+    top: 600px;
+    background-color:  white;
+    padding-bottom: 300px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px  black;
+
+
+}
+
+
+/* for card 3 */
+.card3 p{
+    font: 15px helvetica;
+    position: relative;
+    text-align: center;
+    top: 275px;
+    padding-bottom: 50px;
+}
+.card3 h2{
+    font: 25px helvetica;
+    position: relative;
+    text-align: center;
+    top: 25px;
+    padding-bottom: 10px;
+}
+
+.card3 {
+    background-image: url("../res/card3.gif");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: 70px;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    left: 1100px;
+    top: 600px;
+    background-color:  white;
+    padding-bottom: 300px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 30px  black;
+
+}

@@ -15,32 +15,75 @@
 
     <title>ppui</title>
     <style>
-      .obj {
-        position: absolute;
-        align-items: center;
-        top: 200px;
-        left: 600px;
+      @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap");
+      /* The side navigation menu */
+      .sidenav {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0; /* Stay at the top */
+        left: 0;
+        background-color: #111; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
       }
 
-      .infoPanel {
-        position: absolute;
-        border-radius: 10px;
-        left: 1200px;
-        top: 150px;
-        width: 300px;
-        height: 500px;
-        padding: 10px 10px 10px 10px;
-        display: table;
-        background: grey;
+      /* The navigation menu links */
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
       }
 
-      .infoPanel p {
-        text-align: center;
-        vertical-align: middle;
-        display: table-cell;
+      /* When you mouse over the navigation links, change their color */
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      /* Position and style the close button (top right corner) */
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+      #main1 {
+        transition: margin-left 0.5s;
+        padding: 20px;
+      }
+
+      /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+      header {
+        padding: 0px 0px 0px 0px;
         margin: 0px 0px 0px 0px;
-        color: white;
       }
+
+      .bgcatimg {
+        background-image: url("/StyleSheets/res/mainBG.png");
+        height: 700px;
+        width: 1920px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: absolute;
+        bottom: 300px;
+      }
+
 
       .appBox {
         position: fixed;
@@ -69,10 +112,6 @@
         color: white;
       }
 
-      body {
-        text-align: center;
-      }
-
       #clsBtn {
         height: 23px;
         border-radius: 50%;
@@ -83,33 +122,191 @@
         margin-left: 250px;
         margin-top: 5px;
       }
+
+      .card {
+        position: absolute;
+        top: 700px;
+        left: 875px;
+      }
+
+      .btn-primary {
+        padding: 5px 40px 5px 40px;
+        background-color: #db6565;
+        outline: none;
+        border: 0ch;
+        position: absolute;
+        bottom: 200px;
+        left: 850px;
+        margin: 0px 0px 0px 0px;
+        width: 250px;
+        height: 50px;
+      }
+      .settings {
+        background-image: url("/StyleSheets/res/hamIcon.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        outline: none;
+        border: 0ch;
+        height: 75px;
+        width: 50px;
+        background-color: transparent;
+        padding: 0px 0px 0px 0px;
+        position: absolute;
+        left: 50px;
+        top: 150px;
+      }
+
+      .notify {
+        background-image: url("/StyleSheets/res/bellIcon.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        outline: none;
+        border: 0ch;
+        height: 75px;
+        width: 50px;
+        background-color: transparent;
+        padding: 0px 0px 0px 0px;
+        position: absolute;
+        left: 1650px;
+        top: 150px;
+      }
+
+      .appointmentStatus {
+        background-image: url("/StyleSheets/res/AppointmentIcon.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        outline: none;
+        border: 0ch;
+        height: 75px;
+        width: 50px;
+        background-color: transparent;
+        padding: 0px 0px 0px 0px;
+        position: absolute;
+        left: 1750px;
+        top: 150px;
+      }
+
+      header ul {
+        padding: 10px 10px 10px 400px;
+        margin: 10px 10px 10px 100px;
+      }
+
+      header li {
+        float: left;
+        list-style-type: none;
+        padding: 10px 10px 10px 75px;
+        margin: 10px 10px 10px 10px;
+        display: inline;
+      }
+
+      nav {
+        position: relative;
+        top: 100px;
+      }
+
+      a {
+        color: black;
+        font-family: "Exo 2", sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* styles for status block */
+      .status-block{
+        
+        border: 1px;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        bottom: 200px;
+        left: 850px;
+      }
+      .username{
+        display: block;
+        position: absolute;
+        top:300px;
+        left:300px;
+        
+      }
     </style>
   </head>
 
   <body>
-    <!-- this is promppt section -->
-    <div class="obj">
-      <h1>book appointment</h1>
-      <button
-        type="button"
-        class="btn btn-primary"
-        id="pingBtn"
-        onclick="showPopUp()"
-      >
-        book appointment
-      </button>
+    <!-- settings slide panel inside a div tag-->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">profile</a>
+      <a href="#">edit profile</a>
+      <a href="#">...</a>
+      <a href="#">...</a>
     </div>
+    
 
-    <!-- this is where we display the status -->
-    <div class="infoPanel" id="panel">
-      <p id="infoStatus">you dont have any appointments booked!</p>
-    </div>
+    <!-- bg image and nav bar and buttons inside a header tag-->
+    <header class="bgcatimg">
+      <nav>
+        <ul class="mylist">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Vet Visits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Prescriptions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Case Sheets</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button class="settings" onclick="openNav()"></button>
+      <button class="notify"></button>
+      <button class="appointmentStatus"></button>
+
+      <div class="username">
+        <p>username</p>
+      </div>
+    </header>
+
+
+    
+    <!-- status block -->
+    <!-- <div class="status-block">
+      <div class="vetVisitsCount">
+        <h1>vet visits</h1>
+        <p>0</p>
+      </div>
+
+      <div class="prescriptionsCount">
+        <h1>vet visits</h1>
+        <p>0</p>
+      </div>
+
+      <div class="petsCount">
+        <h1>vet visits</h1>
+        <p>0</p>
+      </div>
+    </div> -->
+
+    <!-- book appointment button on body -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      id="pingBtn"
+      onclick="showPopUp()"
+    >
+      book appointment
+    </button>
+
+    
 
     <!-- book appointment pop up -->
     <div class="appBox" id="popUp1">
       <button
         type="button"
-        class="btn btn-primary"
+        class="btnClose"
         id="clsBtn"
         onclick="hidePopUp()"
       ></button>
@@ -160,7 +357,7 @@
 
       <button
         type="submit"
-        class="btn btn-primary"
+        class="submitBtn"
         id="bkAppBtn"
         onclick="bookApp()"
       >
@@ -168,14 +365,15 @@
       </button>
     </div>
 
+
     <script>
       const socket = new WebSocket("wss://mighty-shelf-60355.herokuapp.com");
 
       // Connection opened
       socket.addEventListener("open", function (event) {
         var responseToRegisterClient = `{"reqType":"register", "userEmail":"${getCookie(
-          "userPpEmail")}", "userPpType":"${getCookie(
-          "userPpType")}"}`;
+          "userPpEmail"
+        )}", "userPpType":"${getCookie("userPpType")}"}`;
         socket.send(responseToRegisterClient);
       });
 
@@ -184,17 +382,15 @@
         console.log("Message from server ", event.data);
         var jsonReqForReqType = JSON.parse(event.data);
         var choice = jsonReqForReqType["resType"];
-        switch(choice){
-          case 'gotAppRes':
+        switch (choice) {
+          case "gotAppRes":
             break;
         }
       });
 
-
       //***********************************
       function bookApp() {
-        document.getElementById("infoStatus").textContent =
-          "finding the closest DOC";
+        console.log("finding the closest doc");
 
         //optional object to specify any additonal options
         var options = {
@@ -218,7 +414,7 @@
 
           var crd = pos.coords;
           var UsersPayload = {
-            reqType:"book",
+            reqType: "book",
             ppemail: emailid,
             locationLat: crd.latitude,
             locationLong: crd.longitude,
@@ -235,11 +431,11 @@
 
         //an error callback funtion
         function error(err) {
-            alert("please enable the permission for location");
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-          }
+          alert("please enable the permission for location");
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
 
-          navigator.geolocation.getCurrentPosition(success, error, options);
+        navigator.geolocation.getCurrentPosition(success, error, options);
       }
 
       function showPopUp() {
@@ -247,6 +443,15 @@
       }
       function hidePopUp() {
         document.getElementById("popUp1").style.display = "none";
+      }
+
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      /* Set the width of the side navigation to 0 */
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
       }
 
       function getCookie(cname) {

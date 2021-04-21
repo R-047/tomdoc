@@ -1,48 +1,384 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
+
 <head>
-	<title>tom's doc</title>
-	<meta charset="utf-8">
-	<!-- <meta name = "viewport" content="width=device-width, initial-scale=1.0"> -->
-	<link rel="stylesheet" type="text/css" href="/StyleSheets/css/homeStyles.css">
-	
+  <title>tom's doc</title>
+  <meta charset="utf-8" />
+  <!-- <meta name = "viewport" content="width=device-width, initial-scale=1.0"> -->
+  <link rel="stylesheet" type="text/css" href="/StyleSheets/css/homeStyles.css" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
 </head>
 
 <body>
-	<header>
-		<img src="/StyleSheets/res/logo.png" width=250 class="logo">
-		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="about.html">About</a></li>
-				<li><a href="contact.html">Contact</a></li>
-				<li><a href="loginActual.html">Login</a></li>
-				<li><a href="signup.html">Signup</a></li>
-					
-			</ul>
-		</nav>
-	</header>
+  <div class="bodyDiv">
+    <header>
+      <img src="/StyleSheets/res/logo.png" width="250" class="logo" />
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li>
+            <a href="#" onclick="openPopUp('.form-container')">Login</a>
+          </li>
+          <li>
+            <a href="#" onclick="openPopUp('.form-container2')">Signup</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-	<div class="img">
-		
+    <div class="img"></div>
 
-	</div>
+    <div class="tagline">
+      <h1>Providing 24 hours care</h1>
+      <h1>for your pets</h1>
+    </div>
 
-	<div class="tagline">
-		<h1>Providing 24 hour care</h1>
-		<h1>for you pets</h1>
-	</div>
+    <div class="quest">
+      <button>Book an appointment</button>
+    </div>
 
-	<div class="quest">
-		<button>Book an appointment</button>
-	</div>
+    <div class="buttons">
+      <button type="button" onclick="document.write(10+10)">
+        you a pet parent?
+      </button>
+      <button>be Tom's Doc!</button>
+    </div>
+  </div>
 
-	<div class="buttons">
-		<button type="button" onclick="document.write(10+10)">you a pet parent?</button>
-		<button>be Tom's Doc!</button>	
-	</div>
-	
+  <!-- login form -->
+  <div class="form-container">
+    <a href="#" class="close" onclick="closeLoginPopUp('.form-container')"></a>
+    <h1>Sign in</h1>
+    <form class="theform" action="/login_check" method="POST">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+          name="emailInput" />
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="pwdInput" />
+      </div>
+      <button type="submit" class="btn btn-primary">login</button>
+    </form>
+  </div>
+
+  <!-- signUp -->
+  <div class="form-container2">
+    <a href="#" class="close" onclick="closeLoginPopUp('.form-container2')"></a>
+
+    <form class="theform2">
+      <div class="userBasicInfo-container">
+        <h1>Sign Up</h1>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="pp" />
+          <label class="btn btn-outline-primary" for="btnradio1">Pet Parent</label>
+
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="doc" />
+          <label class="btn btn-outline-primary" for="btnradio2">Vet Doctor</label>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputName1" class="form-label">your name</label>
+          <input type="text" class="form-control" id="exampleInputName1" name="nameInput" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail2" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
+            name="emailInput" />
+          <div id="emailHelp1" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword2" class="form-label">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword2" name="pwdInput" />
+        </div>
+      </div>
+      <!-- user destailed data -->
+      <div class="userAdvancedInfo-container">
+        <h5>fill in your details</h5>
+        <div class="mb-3">
+          <label for="exampleInputdate1" class="form-label">DOB</label>
+          <input type="date" class="form-control" id="exampleInputdate1" name="dateInput" />
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputphnum" class="form-label">phone number</label>
+          <input type="text" class="form-control" id="exampleInputphnum" name="phnumInput" />
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+            style="height: 100px"></textarea>
+          <label for="floatingTextarea2">address</label>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputpincode" class="form-label">pin code</label>
+          <input type="text" class="form-control" id="exampleInputpincode" name="pincodeInput" />
+        </div>
+      </div>
+
+      <!-- user pets info -->
+      <div class="userPetsInfo-container">
+        <h5>fill in your pets details</h5>
+        <button type="button" class="plus-button plus-button--small" onclick="generateAnotherPetsInfoForm()"></button>
+        <div class="listOfPetsInfo">
+          <div class="mb-3">
+            <label for="exampleInputpetname" class="form-label">your pets name</label>
+            <input type="text" class="form-control" id="exampleInputpetname" name="petnameInput" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputpetsdob" class="form-label">pets DOB</label>
+            <input type="date" class="form-control" id="exampleInputpetsdob" name="petdobInput" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputmedcond" class="form-label">any medical conditions</label>
+            <input type="text" class="form-control" id="exampleInputmedcond" name="petdobInput" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputbreed" class="form-label">breed</label>
+            <input type="text" class="form-control" id="exampleInputbreed" name="dateInput" />
+          </div>
+        </div>
+      </div>
+
+      <!-- docs detailed info  -->
+      <div class="doctorDetailedInfo-container">
+        <h5>fill in your details</h5>
+        <div class="radios">
+          <label class="form-label">gender: </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="male">
+            <label class="form-check-label" for="flexRadioDefault1">
+              male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="female">
+            <label class="form-check-label" for="flexRadioDefault2">
+              female
+            </label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPhNoDoc" class="form-label">phone number</label>
+          <input type="text" class="form-control" id="exampleInputphnumDoc" name="phnumInputDoc" />
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea3"
+            style="height: 100px"></textarea>
+          <label for="floatingTextarea2">address</label>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputprosta" class="form-label">professional status</label>
+          <input type="text" class="form-control" id="exampleInputprosta" name="pincodeInput" />
+        </div>
+      </div>
+    </form>
 
 
+
+    <div class="btns">
+      <div class="nextBtn">
+        <button type="button" class="btn btn-primary" id="nextBtn" onclick="slideToNext()">
+          next
+        </button>
+      </div>
+      <div class="prevBtn">
+        <button type="button" class="btn btn-primary" id="prevBtn" onclick="slideToPrev()">
+          previous
+        </button>
+      </div>
+      <div class="submitBtn">
+        <button type="button" class="btn btn-primary" id="submitbtn" onclick="getAndSendData()"> 
+          sign up
+        </button>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <script>
+    var markerForNextBtn = 0;
+    var userType = undefined;
+    console.log("class strings value: " + markerForNextBtn);
+    function openPopUp(className) {
+      document.querySelector(className).style.display = "block";
+      document.querySelector(".bodyDiv").style.filter = "blur(5px)";
+    }
+
+    function closeLoginPopUp(className) {
+      if (className == ".form-container2") {
+        markerForNextBtn = 0;
+        let userType = undefined;
+        document.querySelector(".userBasicInfo-container").style.transform = "translateX(0px)";
+        document.querySelector(".userAdvancedInfo-container").style.transform = "translateX(0px)";
+        document.querySelector(".userPetsInfo-container").style.transform = "translateX(0px)";
+        document.querySelector(".doctorDetailedInfo-container").style.transform = "translateX(0px)";
+        document.querySelector(className).style.display = "none";
+        document.querySelector(".bodyDiv").style.filter = "blur(0px)";
+        document.getElementById("nextBtn").style.display = "block";
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("submitbtn").style.display = "none";
+
+      } else {
+        document.querySelector(className).style.display = "none";
+        document.querySelector(".bodyDiv").style.filter = "blur(0px)";
+      }
+    }
+
+    function slideToNext() {
+      if (document.getElementById('btnradio1').checked) {
+        userType = "pp";
+        console.log("checked value is pet parent: " + userType);
+      } else {
+        userType = "doc";
+        console.log("checked value is doc " + userType);
+      }
+
+      if (userType == "pp") {
+        if (markerForNextBtn == 0) {
+          document.querySelector(".userBasicInfo-container").style.transform = "translateX(-400px)";
+          document.querySelector(".userAdvancedInfo-container").style.transform = "translateX(-400px)";
+          document.getElementById("prevBtn").style.display = "inline-block";
+
+        } else {
+          if (markerForNextBtn == 1) {
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("submitbtn").style.display = "inline-block";
+          }
+          document.querySelector(".userAdvancedInfo-container").style.transform = "translateX(-800px)";
+          document.querySelector(".userPetsInfo-container").style.transform = "translateX(-400px)";
+        }
+        markerForNextBtn++;
+      } else if (userType == "doc") {
+        if (markerForNextBtn == 0) {
+          document.querySelector(".userBasicInfo-container").style.transform = "translateX(-400px)";
+          document.querySelector(".doctorDetailedInfo-container").style.transform = "translateX(-400px)";
+          document.getElementById("prevBtn").style.display = "inline-block";
+          document.getElementById("nextBtn").style.display = "none";
+          document.getElementById("submitbtn").style.display = "inline-block";
+        }
+      }
+
+    }
+
+    function slideToPrev() {
+      if (userType == "pp") {
+        console.log("value of marker inside slide to prev func " + markerForNextBtn);
+        if (markerForNextBtn == 2) {
+          document.querySelector(".userAdvancedInfo-container").style.transform = "translateX(-400px)";
+          document.querySelector(".userPetsInfo-container").style.transform = "translateX(0%)";
+          document.getElementById("submitbtn").style.display = "none";
+          document.getElementById("nextBtn").style.display = "inline-block";
+        } else {
+          if (markerForNextBtn == 1) {
+            document.getElementById("prevBtn").style.display = "none";
+          }
+          document.querySelector(".userAdvancedInfo-container").style.transform = "translateX(0%)";
+          document.querySelector(".userBasicInfo-container").style.transform = "translateX(0%)";
+          document.getElementById("nextBtn").style.display = "inline-block";
+          document.getElementById("submitbtn").style.display = "none";
+        }
+        markerForNextBtn--;
+      } else if (userType == "doc") {
+        document.querySelector(".doctorDetailedInfo-container").style.transform = "translateX(0%)";
+        document.querySelector(".userBasicInfo-container").style.transform = "translateX(0%)";
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "inline-block";
+        document.getElementById("submitbtn").style.display = "none";
+      }
+
+    }
+
+    function generateAnotherPetsInfoForm() {
+      console.log("inside the func");
+      const div = document.createElement('div');
+
+      div.className = 'row';
+
+      div.innerHTML = `<div class="listOfPetsInfo">
+          <div class="mb-3">
+            <label for="exampleInputpetname" class="form-label">your pets name</label>
+            <input type="text" class="form-control" id="exampleInputpetname" name="petnameInput" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputpetsdob" class="form-label">pets DOB</label>
+            <input type="text" class="form-control" id="exampleInputpetsdob" name="petdobInput" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputmedcond" class="form-label">any medical conditions</label>
+            <input type="text" class="form-control" id="exampleInputmedcond" name="petdobInput" />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputbreed" class="form-label">breed</label>
+            <input type="date" class="form-control" id="exampleInputbreed" name="dateInput" />
+          </div>
+        </div>`;
+      document.querySelector('.listOfPetsInfo').appendChild(div);
+    }
+
+
+    function getAndSendData(){
+      var userObj = null;
+      var xhr = new XMLHttpRequest();
+      if(userType=="pp"){
+        userObj = {
+          userType: "pp",
+          name: document.getElementById("exampleInputName1").value,
+          email: document.getElementById("exampleInputEmail2").value,
+          pwd: document.getElementById("exampleInputPassword2").value,
+          DOB: document.getElementById("exampleInputdate1").value,
+          phnum: document.getElementById("exampleInputphnum").value,
+          address: document.getElementById("floatingTextarea2").value,
+          pincode: document.getElementById("exampleInputpincode").value,
+          petsname: document.getElementById("exampleInputpetname").value,
+          petsdob: document.getElementById("exampleInputpetsdob").value,
+          medcond: document.getElementById("exampleInputmedcond").value,
+          breed: document.getElementById("exampleInputbreed").value
+        }
+        var params = "q="+JSON.stringify(userObj);
+        console.log(userObj.name+" "+userObj.email+" "+userObj.pwd+" "+userObj.DOB+" "+userObj.phnum+" "+userObj.address+" "+userObj.pincode+" "+userObj.petsname+" "+userObj.petsdob+" "+userObj.medcond+" "+userObj.breed);
+
+        
+        xhr.open('POST','/create_user', true);
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+
+      }else if(userType == "doc"){
+        var genderInput = null;
+        if(document.getElementById("flexRadioDefault1").checked){
+          genderInput = "male";
+        }else{
+          genderInput = "female";
+        }
+        userObj = {
+          userType: "doc",
+          name: document.getElementById("exampleInputName1").value,
+          email: document.getElementById("exampleInputEmail2").value,
+          pwd: document.getElementById("exampleInputPassword2").value,
+          gender: genderInput,
+          phnum: document.getElementById("exampleInputphnumDoc").value,
+          address: document.getElementById("floatingTextarea3").value,
+          prosta: document.getElementById("exampleInputprosta").value
+        }
+        console.log(userObj.name+" "+userObj.email+" "+userObj.pwd+" "+userObj.gender+" "+userObj.phnum+" "+userObj.address+" "+userObj.prosta);
+        var params = "q="+JSON.stringify(userObj);
+        xhr.open('POST','/create_user', true);
+        xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+        xhr.send(params);
+      }
+    }
+
+  </script>
 </body>
+
 </html>
