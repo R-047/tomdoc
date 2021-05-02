@@ -1,0 +1,199 @@
+<!-- 
+/*
+ *	This content is generated from the PSD File Info.
+ *	(Alt+Shift+Ctrl+I).
+ *
+ *	@desc 		
+ *	@file 		untitled
+ *	@date 		1619694173153
+ *	@title 		Page 2
+ *	@author 	
+ *	@keywords 	
+ *	@generator 	Export Kit v1.3.figma
+ *
+*/
+ -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+    <title>untitled</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+
+    <!-- Add your custom HEAD content here -->
+    <style>
+        /*
+     @name untitled
+ */
+        @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        /* Only edit this if you know what you are doing! */
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: "Arial";
+            overflow-x: hidden;
+            padding-left: 200px;
+        }
+
+        /* Only edit this if you know what you are doing! */
+        img {
+            position: absolute;
+            display: block;
+            margin: 0px;
+            border: none;
+            padding: 0px;
+        }
+
+        /* Only edit this if you know what you are doing! */
+        div {
+            position: absolute;
+        }
+
+        .content-container {
+            display: block;
+            position: relative;
+            width: 1920px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 50px;
+        }
+
+        .content-container>div {
+            position: relative;
+            top: inherit;
+        }
+
+        .page_desktop___1_ek1 {
+            top: 0px;
+            left: 0px;
+            width: 1920px;
+            height: 1080px;
+        }
+
+        ._bg__desktop___1_ek2 {
+            top: 0px;
+            left: 0px;
+            width: 1920px;
+            height: 1080px;
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .frame_1 {
+
+            /* position: absolute;
+            width: 406px;
+            height: 532px;
+            left: 122px;
+            top: 59px;
+            display: inline-block;
+            background: .FFFFFF;
+            box-shadow: 2px 4px 4px 5px rgba(0, 0, 0, 0.25);
+            border-radius: 19px; */
+            width: 406px;
+            height: 532px;
+            display: inline-block;
+            box-shadow: 2px 4px 4px 5px rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            margin: 2%;
+        }
+
+        ._2021_01_01 {
+            top: 74px;
+            left: 35px;
+            width: 120px;
+            height: 45px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 20px;
+            text-align: left;
+            color: .000000;
+        }
+
+
+        .doctor_ishita {
+            top: 72px;
+            left: 259px;
+            width: 135.5px;
+            height: 39.5px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 21px;
+            text-align: left;
+            color: .000000;
+        }
+
+
+        .title {
+            top: 130px;
+            left: 35px;
+            width: auto;
+            height: 39.5px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 21px;
+            font-weight: bold;
+            text-align: left;
+            color: .000000;
+        }
+
+        .frame_2 {
+            top: 171px;
+            left: 35px;
+            width: 344px;
+            height: 302px;
+        }
+
+        .lorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry__lorem_ipsum_has_been_the_industry_p_into_electronic_typesetting__remaining_essentially_unchanged__it_was_popularised_in_the_1960s_with_the_release_of_letraset_sheets_containing_lorem_ipsum_passages__and_more_recently_with_desktop_publisng_versions_of_lorem_ipsum {
+            top: 0px;
+            left: 0px;
+            width: 359.5px;
+            height: 316.5px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 21px;
+            font-weight: regular;
+            text-align: left;
+            color: .000000;
+        }
+
+
+
+        /* Add your custom CSS here */
+    </style>
+
+</head>
+
+<body>
+    <div class="content-container">
+        
+        <% for(var i = 0; i<data.prescArr.length; i++){ %> 
+            <div class="frame_1">
+                <div class="_2021_01_01">
+                    <%= data.prescArr[i].date %> 
+                </div>
+                <div class="doctor_ishita">
+                    Dr.<%= data.prescArr[i].docname %> 
+                </div>
+                <div class="title">
+                    <%= data.prescArr[i].title %> 
+                </div>
+
+                <div class="frame_2">
+                    <div
+                        class="lorem_ipsum_is_simply_dummy_text_of_the_printing_and_typesetting_industry__lorem_ipsum_has_been_the_industry_p_into_electronic_typesetting__remaining_essentially_unchanged__it_was_popularised_in_the_1960s_with_the_release_of_letraset_sheets_containing_lorem_ipsum_passages__and_more_recently_with_desktop_publisng_versions_of_lorem_ipsum">
+                        <%= data.prescArr[i].prescription %> 
+                    </div>
+
+                </div>
+
+            </div>
+        <%} %> 
+  
+    </div>
+</body>
+
+</html>

@@ -10,6 +10,9 @@
   <title>Document</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    body{
+      overflow-x: hidden;
+    }
 
     .nav-controls {
       position: absolute;
@@ -410,10 +413,24 @@
       left: 30%;
       color: rgb(59, 59, 59);
     }
+
+    .username {
+      position: relative;
+      left: 1650px;
+      top: 30px;
+    }
   </style>
 </head>
 
 <body>
+  <div class="username">
+    <h4>Welcome Dr. <%= data.docsProp.docNAME %>
+    </h4>
+    <h4>
+      Your rating is <%= data.docsProp.averageRev %>
+    </h4>
+
+  </div>
   <div class="nav-controls">
     <a href="#"
       onclick="document.getElementById('slide').style.transform='translateX(0%)';document.getElementById('list-container-id').style.transform='translateX(0%)';document.getElementById('list-container-id2').style.transform='translateX(0%)'">today's</a>
@@ -423,7 +440,7 @@
   </div>
   <div class="lists-container">
     <ul class="list-container" id="list-container-id">
-      <% if (data.todaysAppArr==null) { %>
+      <% if (data.todaysAppArr=="" ) { %>
         <h6 id="list-placeholder" class="placeholder-style"> no appointments scheduled for today</h6>
         <%} else { %>
           <% for(var i=0; i < data.todaysAppArr.length; i++) { %>
@@ -442,7 +459,7 @@
                 </div>
               </div>
             </li>
-            
+
             <% } %>
               <% } %>
 
@@ -517,6 +534,10 @@
       <h5 class="card-title">Appointment</h5>
       <h6 class="card-subtitle mb-2 text-muted">You have an appointment</h6>
       <p class="card-text" id="username"></p>
+      <p class="card-text" id="illorvaccine"></p>
+      <p class="card-text" id="timeforapp"></p>
+      <p class="card-text" id="desc"></p>
+      <p class="card-text" id="petsname"></p>
       <span><button type="button" class="btn btn-success" id="accBtn" onclick="acceptResponse()">
           accept</button><button type="button" class="btn btn-danger" id="rejBtn" onclick="rejectResponse()">
           reject
@@ -527,12 +548,12 @@
       </div>
     </div>
   </div>
-  <button onclick="add()">DONT CLICK! (TEST USE ONLY)</button>
+
   <!-- <script src="ejs.min.js"></script> -->
   <script>
 
     //mighty-shelf-60355.herokuapp.com
-    const socket = new WebSocket("wss://mighty-shelf-60355.herokuapp.com");
+    const socket = new WebSocket("ws://localhost:8080");
 
     // Connection opened
     socket.addEventListener("open", function (event) {
@@ -551,10 +572,14 @@
         case "AppReq":
           //show pop up and delay for 10s after 10s hide the pop up and send wait
           notify();
+          // timeForApp":"18:08","purpose":"vaccination","description":"vaccine","petsname":"browny"
           UsersAppointmentReq = jsonReqForReqType;
           document.getElementById("UserAppReq").style.display = "block";
-          document.getElementById("username").textContent =
-            UsersAppointmentReq['ppname'];
+          document.getElementById("username").textContent = "from: " + UsersAppointmentReq['ppname'];
+          document.getElementById("illorvaccine").textContent = "purpose: " + UsersAppointmentReq['purpose'];
+          document.getElementById("timeforapp").textContent = "time: " + UsersAppointmentReq['timeForApp'];
+          document.getElementById("desc").textContent = "description: " + UsersAppointmentReq['description'];
+          document.getElementById("petsname").textContent = "Pets name: " + UsersAppointmentReq['petsname'];
           displayTimeout = setTimeout(function () {
             document.getElementById("UserAppReq").style.display = "none";
             var NoResponse = `{"reqType":"docResponse","response":"wait","to":"${UsersAppointmentReq['ppemail']}", "from":"${UsersAppointmentReq['docsName']}"}`;//json_for_doctorsResponse: {"reqType":"docResponse","response":"yes/no/wait"}
@@ -614,9 +639,8 @@
     }
 
     function acceptResponse() {
-      var ResponseYes = `{"reqType":"docResponse","response":"yes","to":"${UsersAppointmentReq['ppemail']}","from":"${UsersAppointmentReq['docsName']}","time":"${UsersAppointmentReq.timeForApp}"}`;
-      socket.send(ResponseYes);
-      console.log("response sent: " + ResponseYes);
+
+      
       clearTimeout(displayTimeout);
 
       //********************************************
@@ -624,7 +648,7 @@
       //********************************************
       // | doc_id | pet_id | a_date | a_time | prescription | review_id
       var current_datetime = new Date();
-      var formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth()) + "-" + current_datetime.getDate();
+      var formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
       var payloadForAppReg = {
         docid: "<%=data.docsProp.docID%>",
         petid: UsersAppointmentReq['petid'],
@@ -642,13 +666,22 @@
         if (xhr.readyState == 4) {
           console.log(xhr.responseText);
           add(JSON.parse(xhr.responseText).appId);
+          var ResponseYes = `{"reqType":"docResponse","appId":"${JSON.parse(xhr.responseText).appId}","response":"yes","to":"${UsersAppointmentReq['ppemail']}","from":"${UsersAppointmentReq['docsName']}","time":"${UsersAppointmentReq.timeForApp}"}`;
+          console.log("response sent: " + ResponseYes);
+          socket.send(ResponseYes);
+          console.log("length before noning: " + ArrOfTodaysApps.length);
+          if (ArrOfTodaysApps.length == 1) {
+            console.log("hiding");
+            document.querySelector(".placeholder-style").style.display = "none";
+          }
         }
 
       };
       xhr.send(params);
       document.getElementById("UserAppReq").style.display = "none";
       document.getElementById('details-container').style.display = "block";
-      document.getElementById('list-placeholder').style.display = "none";
+
+
       // add(appID);
 
     }
@@ -669,13 +702,14 @@
     console.log("<%=data.todaysAppArr%>");
     if ("<%=data.todaysAppArr%>" == "") {
       document.getElementById('details-container').style.display = "none";
-
+      // document.querySelector('.placeholder-style').appendChild;
 
     } else {
       <% for (var i = 0; data.todaysAppArr !== null && i < data.todaysAppArr.length; i++) {%>
         var dataDupli = {
           appointmentID: "<%=data.todaysAppArr[i].appointmentID%>",
           ppname: "<%=data.todaysAppArr[i].ppname%>",
+          ppemail: "<%=data.todaysAppArr[i].ppemail%>",
           pname: "<%=data.todaysAppArr[i].pname%>",
           date: "<%=data.todaysAppArr[i].date%>",
           time: "<%=data.todaysAppArr[i].time%>",
@@ -797,6 +831,9 @@
 
 
     function onPrescSave() {
+      var rateReq = `{"reqType":"rateReqByDoc","to":"${ArrOfTodaysApps[currSelIndex].ppemail}","from":"${getCookie("userDocEmail")}"}`;
+      socket.send(rateReq);
+
       console.log("logging on presc save: ");
       console.log(ArrOfTodaysApps);
 
@@ -821,11 +858,12 @@
         currSelIndex = 0;
         document.getElementById('prescription-container').style.display = "none";
         document.getElementById('details-container').style.display = "none";
-        var ph = document.createElement("H6");
-        ph.textContent = "no appointments";
-        ph.className = "placeholder-style";
-        var list = document.getElementById("list-container-id");
-        list.appendChild(ph);
+        document.querySelector(".placeholder-style").style.display = "block";
+        // var ph = document.createElement("H6");
+        // ph.textContent = "no appointments";
+        // ph.className = "placeholder-style";
+        // var list = document.getElementById("list-container-id");
+        // list.appendChild(ph);
 
 
       } else {
@@ -878,6 +916,7 @@
         element.onclick = () => {
           index = todaysAppsListArr.indexOf(element.innerHTML);
           displayDetails(index, ArrOfTodaysApps);
+
         }
       })
       currSelIndex = 0;
@@ -886,10 +925,11 @@
 
     function refreshList(appID) {
       let current_datetime = new Date()
-      let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth()+1) + "-" + current_datetime.getDate();
+      let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
       ArrOfTodaysApps.push({
         appointmentID: appID,
         ppname: UsersAppointmentReq.ppname,
+        ppemail: UsersAppointmentReq.ppemail,
         pname: UsersAppointmentReq.petsname,
         date: formatted_date,
         time: UsersAppointmentReq.timeForApp,
@@ -957,7 +997,7 @@
 
     function refreshList2() {
       ArrOfPrevApps.push(
-       ArrOfTodaysApps[currSelIndex]
+        ArrOfTodaysApps[currSelIndex]
       );
       console.log("logging just completed app: ");
       console.log(ArrOfTodaysApps[currSelIndex]);
@@ -965,7 +1005,7 @@
 
       //*****************************sort according to date 
       ArrOfPrevApps.sort((a, b) => {
-        
+
         var d1 = new Date(a.date);
         var d2 = new Date(b.date);
         if (d1 < d2) {
@@ -996,6 +1036,7 @@
         element.onclick = () => {
           var index = prevAppsListArr.indexOf(element.innerHTML);
           displayDetails(index, ArrOfPrevApps);
+          document.getElementById('details-container').style.display = "block";
         }
       })
     }

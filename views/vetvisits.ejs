@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+        body {
+            overflow-y: hidden;
+        }
+
+        .lists-container {
+            width: 1000px;
+            height: 1000px;
+            overflow: hidden;
+            position: absolute;
+            top: 75px;
+            left: 500px;
+            padding-top: 5px;
+        }
+
+        .list-container {
+            list-style: none;
+            width: 800px;
+            height: 500px;
+            overflow: hidden;
+            overflow-y: scroll;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            transition: transform 500ms ease-in-out 25ms;
+        }
+
+
+
+        .placeholder-style {
+            position: relative;
+            top: 25%;
+            left: 30%;
+            color: rgb(59, 59, 59);
+            display: none;
+        }
+
+        .divitemstyle {
+            top: 0px;
+            left: 0px;
+            width: 743px;
+            height: 97px;
+            border: 1px solid #000000;
+            background: rgba(255, 255, 255, 0);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            padding-left: 30px;
+        }
+
+        .bmpTextDivstyle {
+            top: 0px;
+            left: 0px;
+            width: 541px;
+            height: 53px;
+            background: rgba(255, 255, 255, 0);
+        }
+
+        .bmpstyle {
+            top: 0px;
+            left: 0px;
+            width: 49px;
+            height: 49px;
+            -ms-border-radius: 24.5px / 24.5px;
+            -o-border-radius: 24.5px / 24.5px;
+            -moz-border-radius: 24.5px / 24.5px;
+            -webkit-border-radius: 24.5px / 24.5px;
+            border-radius: 24.5px / 24.5px;
+            background: rgba(196, 196, 196, 1);
+            margin: 0px 0px 0px 0px;
+            padding: 0px 0px 0px 0px;
+        }
+
+        .textcontentstyle {
+            top: 0px;
+            left: 0px;
+            width: 455px;
+            height: 53px;
+            background: rgba(255, 255, 255, 0);
+        }
+
+        .datetimeTextStyle {
+            list-style: none;
+            left: 0px;
+            bottom: 50px;
+            width: 500px;
+            height: 39.5px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 21px;
+            position: relative;
+            text-align: left;
+            color: #000000;
+        }
+
+        .docsnamestyle {
+            list-style: none;
+            margin-top: 20px;
+            left: 0px;
+            width: 700px;
+            height: 45px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 24px;
+            text-align: left;
+            color: #000000;
+        }
+
+        .ratingsstyle {
+            list-style: none;
+            left: 550px;
+            bottom: 45px;
+            width: 700px;
+            height: 45px;
+            overflow: hidden;
+            font-family: Roboto;
+            font-size: 24px;
+            text-align: left;
+            color: #000000;
+            position: relative;
+        }
+
+        .rateBox {
+      
+      display: block;
+    }
+
+    .rate {
+      float: left;
+      height: 46px;
+      padding: 0 10px;
+    }
+
+    .rate:not(:checked)>input {
+      position: absolute;
+      top: -9999px;
+    }
+
+    .rate:not(:checked)>label {
+      float: right;
+      width: 1em;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 30px;
+      color: #ffc700;
+    }
+
+    .rate:not(:checked)>label:before {
+      content: '★ ';
+    }
+
+    .rate>input:checked~label {
+      color: #ffc700;
+    }
+
+    /* .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+      color: #deb217;
+    } */
+
+    /* .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+      color: #c59b08;
+    } */
+    </style>
+</head>
+
+<body>
+    <div class="lists-container">
+        <ul class="list-container" id="list-container-id">
+            <% if (data.vetvisitArr=="" ) { %>
+                <h6 id="list-placeholder" class="placeholder-style"> you dont have any previous vet visists</h6>
+                <%} else { %>
+                    <% for(var i=0; i < data.vetvisitArr.length; i++) { %>
+                        <li>
+                            <div class="divitemstyle">
+                                <div class="bmpTextDivstyle">
+                                    <div class="textcontentstyle">
+                                        <div class="docsnamestyle">
+                                            Dr.<%= data.vetvisitArr[i].docname %>
+                                        </div>
+                                        <div class="ratingsstyle">
+                                            <div class="rateBox" id="rbi">
+                                                <div class="rate">
+                                                  <%for(var j=0; j< data.vetvisitArr[i].rating; j++) {%>  
+                                                  <input disabled type="radio" id="star5" name="rate" value="5"/>
+                                                  <label for="star5" title="text">5 stars</label>
+                                                  <!-- <input disabled type="radio" id="star4" name="rate" value="4" />
+                                                  <label for="star4" title="text">4 stars</label>
+                                                  <input disabled type="radio" id="star3" name="rate" value="3" />
+                                                  <label for="star3" title="text">3 stars</label>
+                                                  <input disabled type="radio" id="star2" name="rate" value="2" />
+                                                  <label for="star2" title="text">2 stars</label>
+                                                  <input disabled type="radio" id="star1" name="rate" value="1" />
+                                                  <label for="star1" title="text">1 star</label> -->
+                                                  <%}%>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="datetimeTextStyle">
+                                            <%=data.vetvisitArr[i].date%>
+                                                <%=data.vetvisitArr[i].time%> pm
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <% } %>
+                    <% } %>
+
+        </ul>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

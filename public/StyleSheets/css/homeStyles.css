@@ -43,7 +43,7 @@ header nav {
 
 .tagline {
   font-family: "Roboto", sans-serif;
-  font-size: 30px;
+  font-size: 100px;
   font-weight: bold;
   padding-top: 350px;
   padding-left: 75px;
@@ -51,6 +51,8 @@ header nav {
 }
 
 .tagline h1 {
+  font-size: 50px;
+  font-weight: bold;
   line-height: 100%;
 }
 

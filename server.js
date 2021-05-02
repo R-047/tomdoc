@@ -68,22 +68,55 @@ app.post("/login_check", (req, res) => {
         client_1 = new Client(pgconnObj);
         client_1.connect();
         //select name, pet_parent_info.user_id, latitude, longitude, pet_id, pet_name from pet_parent_info join pet_info on pet_parent_info.user_id = pet_info.user_id where pet_parent_info.email = '${email}';
-        var qforusername = `select name, pet_parent_info.user_id, latitude, longitude, pet_id, pet_name from pet_parent_info join pet_info on pet_parent_info.user_id = pet_info.user_id where pet_parent_info.email = '${email}'`;
+        var qforusername = `select name, (select count(appointments) from appointments where pet_id = (select pet_id from pet_info where user_id = (select user_id from pet_parent_info where email='${email}'))) as count ,pet_parent_info.user_id, latitude, longitude, pet_id, pet_name from pet_parent_info join pet_info on pet_parent_info.user_id = pet_info.user_id where pet_parent_info.email = '${email}'`;
         //**************************************************** */
         //get the COUNT of VET VISITS, PRESCRIPTIONS, NUMBER OF PETS
         //check whether any incomplete appointments are in appointments table for this user
 
+
         console.log("SELECTING NAME FROM DATABASE: " + qforusername);
         client_1.query(qforusername, (err, resultofname) => {
+
           console.log(resultofname);
           resultofnamearr = resultofname.rows;
+          var ppid = resultofnamearr[0].user_id;
           var ppname = resultofnamearr[0].name;
           var userLat = resultofnamearr[0].latitude;
           var userLong = resultofnamearr[0].longitude;
           var pet_id = resultofnamearr[0].pet_id;
           var pet_name = resultofnamearr[0].pet_name;
+          var count = resultofnamearr[0].count;
 
-          res.render("pp", { data: { ppname: ppname, userLat: userLat, userLong: userLong, petid: pet_id, petname: pet_name}});
+          client_2 = new Client(pgconnObj);
+          client_2.connect();
+          var qforanyApps = `select doc_info.d_name, appointments.a_date, appointments.a_time from appointments join doc_info on appointments.doc_id = doc_info.doc_id where pet_id = ${pet_id} and completion_status = false;`
+          client_2.query(qforanyApps, (err, result2) => {
+            console.log("LOGGING DOCSNAME AND TIME IF THERE IS ANY APPOINTMENT");
+            console.log(result2);
+
+            var docname = "", apptime = "";
+            if (result2.rows !== null) {
+              var currdate = new Date();
+              var currdateStr = currdate.getFullYear() + "-" + (currdate.getMonth() + 1) + "-" + currdate.getDate();
+
+              for (var i = 0; i < result2.rows.length; i++) {
+                var rowdate = new Date(result2.rows[i].a_date);
+                var rowdateStr = rowdate.getFullYear() + "-" + (rowdate.getMonth() + 1) + "-" + rowdate.getDate();
+                if (currdateStr == rowdateStr) {
+                  console.log("THE USER IS IN APPOINTMENT STATE");
+                  docname = result2.rows[i].d_name;
+                  apptime = result2.rows[i].a_time;
+                }
+              }
+
+            }
+
+            console.log("LOGGING DOCNAME AND APPTIME IF ANY: " + docname + " " + apptime);
+            res.render("pp", { data: { ppid: ppid, ppname: ppname, count: count, userLat: userLat, userLong: userLong, petid: pet_id, petname: pet_name, docname: docname, apptime: apptime } });
+            client_2.end();
+          });
+
+
           client_1.end();
         });
 
@@ -92,55 +125,77 @@ app.post("/login_check", (req, res) => {
         res.cookie("userDocEmail", email);
         res.cookie("userDocType", 1);
         //**************************************************** */
-        var qforgettingAllAppointments = ` select level3.appointment_id, level3.doc_id, level3.d_name, level3.d_latitude, level3.d_longitude, pet_parent_info.name, level3.pet_id, level3.pet_name, level3.a_date, level3.a_time, level3.completion_status from (select pet_info.pet_name, pet_info.user_id, level2.appointment_id, level2.a_date, level2.a_time, level2.doc_id, level2.pet_id, level2.completion_status, level2.d_name, level2.d_latitude, level2.d_longitude from (select level1.appointment_id, level1.a_date, level1.a_time, level1.doc_id, level1.pet_id, level1.completion_status, doc_info.d_name, doc_info.d_latitude, doc_info.d_longitude from (select appointment_id, a_date, a_time, doc_id, pet_id, completion_status from appointments) as level1 join doc_info on level1.doc_id = doc_info.doc_id where d_email='${email}') as level2 join pet_info on level2.pet_id = pet_info.pet_id) as level3 join pet_parent_info on pet_parent_info.user_id = level3.user_id order by a_time asc;`;
+        var qforgettingAllAppointments = ` select level3.appointment_id, level3.doc_id, level3.d_name, level3.d_latitude, level3.d_longitude, pet_parent_info.name, level3.pet_id, level3.pet_name, pet_parent_info.email, pet_parent_info.latitude, pet_parent_info.longitude, level3.a_date, level3.a_time, level3.completion_status from (select pet_info.pet_name, pet_info.user_id, level2.appointment_id, level2.a_date, level2.a_time, level2.doc_id, level2.pet_id, level2.completion_status, level2.d_name, level2.d_latitude, level2.d_longitude from (select level1.appointment_id, level1.a_date, level1.a_time, level1.doc_id, level1.pet_id, level1.completion_status, doc_info.d_name, doc_info.d_latitude, doc_info.d_longitude from (select appointment_id, a_date, a_time, doc_id, pet_id, completion_status from appointments) as level1 join doc_info on level1.doc_id = doc_info.doc_id where d_email='${email}') as level2 join pet_info on level2.pet_id = pet_info.pet_id) as level3 join pet_parent_info on pet_parent_info.user_id = level3.user_id order by a_time asc;`;
         client_1 = new Client(pgconnObj);
         client_1.connect();
         client_1.query(qforgettingAllAppointments, (err, resultofapps) => {
           console.log("LOGGING DATA OF APPOINTMENTS");
           console.log(resultofapps);
+
+
+          var currdate = new Date();
+          var currdateStr = currdate.getFullYear() + "-" + (currdate.getMonth() + 1) + "-" + currdate.getDate();
+          var todaysappsArr = [];
+          var previousappsArr = [];
+          var docid = resultofapps.rows[0].doc_id;
+          var docname = resultofapps.rows[0].d_name;
+          var doclat = resultofapps.rows[0].d_latitude;
+          var doclong = resultofapps.rows[0].d_longitude;
+
+
+
+          for (var i = 0; i < resultofapps.rows.length; i++) {
+            var rowdate = new Date(resultofapps.rows[i].a_date);
+            var rowdateStr = rowdate.getFullYear() + "-" + (rowdate.getMonth() + 1) + "-" + rowdate.getDate();
+
+            if (currdateStr == rowdateStr && !resultofapps.rows[i].completion_status) {
+              console.log("todays date");
+              todayappObj = {
+                appointmentID: resultofapps.rows[i].appointment_id,
+                ppname: resultofapps.rows[i].name,
+                ppemail: resultofapps.rows[i].email,
+                pname: resultofapps.rows[i].pet_name,
+                date: rowdateStr,
+                time: resultofapps.rows[i].a_time,
+                userLat: resultofapps.rows[i].latitude,
+                userLong: resultofapps.rows[i].longitude
+              }
+              todaysappsArr.push(todayappObj);
+            } else {
+              console.log("not todays date");
+              prevappObj = {
+                ppname: resultofapps.rows[i].name,
+                pname: resultofapps.rows[i].pet_name,
+                date: rowdateStr,
+                time: resultofapps.rows[i].a_time
+              }
+              previousappsArr.push(prevappObj);
+            }
+          }
+          todaysappsArr.sort((a, b) => {
+            if (a.time > b.time) {
+              return 1;
+            } else {
+              return -1;
+            }
+          });
+          console.log("THE APPOINTMENT ARRAY OF TODAY IS: " + todaysappsArr + " AND THE SIZE OF THE ARRAY IS: " + todaysappsArr.length + "\n THE APPOINTMENT ARRAY OF PREVIOUS IS: " + previousappsArr);
+
+          var qforavgrev = `select ROUND(AVG(rating)::numeric,1) as averagerev from reviews where doc_id = ${docid}`;
+          client_2 = new Client(pgconnObj);
+          client_2.connect();
+          client_2.query(qforavgrev, (err, resultofavgrev) => {
+            console.log("COUNTING THE AVG REV");
+            console.log(resultofavgrev);
+            var avgrev = resultofavgrev.rows[0].averagerev;
+            res.render("test", { data: { todaysAppArr: todaysappsArr, prevAppArr: previousappsArr, docsProp: { docID: docid, docNAME: docname, docLAT: doclat, docLONG: doclong, averageRev: avgrev } } });
+            client_2.end();
+          });
           client_1.end()
         });
-      
-        var todaysappsArr = [];
-        var previousappsArr = [];
-        var docid = 1;//random
-        var docname = "sample";//random
-        var doclat = 19.0760;
-        var doclong = 72.8777;
-        let current_datetime = new Date();
-        let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
-        for (var i = 0; i < 6; i++) {
-          todayappObj = {
-            appointmentID: Math.floor(Math.random() * 10)+1,
-            ppname: "testuser" + i,
-            pname: "testpet",
-            date: formatted_date,
-            time: `1${Math.floor(Math.random() * 10)}:0${Math.floor(Math.random() * 10)}`,
-            userLat: `13.0111`,
-            userLong: 77.5550
-          }
-          todaysappsArr.push(todayappObj);
-        }
-        for (var i = 0; i < 10; i++) {
-          prevappObj = {
-            ppname: "testuser" + i,
-            pname: "testpet",
-            date: `2020-${+Math.floor(Math.random() * 10)}-${+Math.floor(Math.random() * 10)+1}`,
-            time: "12:00"
-          }
-          previousappsArr.push(prevappObj);
-        }
 
-        todaysappsArr.sort((a, b) => {
-          if (a.time > b.time) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-        console.log("THE APPOINTMENT ARRAY OF TODAY IS: " + todaysappsArr + " AND THE SIZE OF THE ARRAY IS: " + todaysappsArr.length + "\n THE APPOINTMENT ARRAY OF PREVIOUS IS: " + previousappsArr);
-        // res.sendFile(path.join(__dirname, "public", "doc.html"));
-        res.render("test", { data: {todaysAppArr: todaysappsArr, prevAppArr: previousappsArr, docsProp: { docID: docid, docNAME: docname, docLAT: doclat, docLONG: doclong } } });
+
+
 
       }
 
@@ -233,43 +288,127 @@ app.post("/docsRoute", (req, res) => {
   //reqTypes are appRegReq, appUpdateReq
   console.log(req.body);
   var choice = JSON.parse(req.body.appointmentData).reqType;
-  res.send(`{"appId":"1"}`);
-  // switch(choice){
-  //   case 'appRegReq':
-  //     // | doc_id | pet_id | a_date | a_time | prescription | review_id | completion_status| presc_title
-  //     break;
-    
-  //   case 'appUpdateReq':
 
-  //     break;
-  // }
-  //1.req for app registartion after clicking accept btn
-  //2.req for app presc update and completion status update
+  switch (choice) {
+    case 'appRegReq':
+      var docid = JSON.parse(req.body.appointmentData).payload.docid;
+      var petid = JSON.parse(req.body.appointmentData).payload.petid;
+      var appdate = JSON.parse(req.body.appointmentData).payload.appDate;
+      var apptime = JSON.parse(req.body.appointmentData).payload.appTime;
+      var presc = null;
+      var prescTitle = null;
+      var compstat = false;
+      var qfornewApp = `insert into appointments(doc_id, pet_id, a_date, a_time, prescription, completion_status, presc_title) values(${docid}, ${petid}, '${appdate}', '${apptime}', ${presc}, ${compstat}, ${prescTitle})`;
+      client_1 = new Client(pgconnObj);
+      client_1.connect();
+      client_1.query(qfornewApp, (err, resultofapps) => {
+        console.log('LOGGING WHILE INSERTING A NEW APPOITNMENT');
+        console.log(err + " " + resultofapps);
+        var qforappid = `select appointment_id from appointments where doc_id = ${docid} and pet_id = ${petid} and a_date = (SELECT CURRENT_DATE) and completion_status = false`;
+
+        client_2 = new Client(pgconnObj);
+        client_2.connect();
+        client_2.query(qforappid, (err, resultofappid) => {
+          console.log("SELECTING THE APPOINTMENT ID");
+          console.log(resultofappid);
+          var appidtosend = resultofappid.rows[0].appointment_id;
+          res.send(`{"appId":"${appidtosend}"}`);
+          client_2.end();
+        });
+        client_1.end();
+      });
+
+
+      // | doc_id | pet_id | a_date | a_time | prescription | completion_status| presc_title
+      break;
+
+    case 'appUpdateReq':
+      var prescr = JSON.parse(req.body.appointmentData).payload.presc;
+      var presc_title = JSON.parse(req.body.appointmentData).payload.prescTitle;
+      var appid = JSON.parse(req.body.appointmentData).payload.appidtosend;
+      var qforUpdateApp = `update appointments set presc_title = '${presc_title}', prescription = '${prescr}', completion_status = true where appointment_id = ${appid}`;
+      client_1 = new Client(pgconnObj);
+      client_1.connect();
+      client_1.query(qforUpdateApp, (err, resultofapps) => {
+        console.log('APPOINTMENT DONE, DOCTOR RATING LEFT');
+        console.log(resultofapps + " " + err);
+        client_1.end()
+      });
+
+      break;
+  }
+
 });
 
-app.post("/usersRoute", (req, res) => {
-  //1.direction to vet visits page with all data
-  //2.direction to prescriptions page with all data
+
+
+
+app.get("/usersPrescription", (req, res) => {
+  //date docsname title prescription
+  //select doc_info.d_name, a_date, presc_title, prescription from appointments join doc_info on appointments.doc_id = doc_info.doc_id where pet_id = (select pet_id from pet_info where user_id = 1) and completion_status = false;
+  var uid = req.query.id
+  console.log("LOGGIN ID OF PP TO VIEW prescriptions: " + uid);
+  var qforpresc = `select doc_info.d_name, a_date, presc_title, prescription from appointments join doc_info on appointments.doc_id = doc_info.doc_id where pet_id = (select pet_id from pet_info where user_id = ${uid}) and completion_status = true`;
+  client_1 = new Client(pgconnObj);
+  client_1.connect();
+  client_1.query(qforpresc, (err, resultofpresc) => {
+    console.log('GETTING ALL THE PRESCRIPTIONS OF USER ' + uid + " LOGGING ANY ERROR IF: " + err);
+    console.log(resultofpresc);
+    var arrOfPresc = [];
+    for (var i = 0; i < resultofpresc.rows.length; i++) {
+
+      var prescObj = {
+        docname: resultofpresc.rows[i].d_name,
+        date: resultofpresc.rows[i].a_date,
+        title: resultofpresc.rows[i].presc_title,
+        prescription: resultofpresc.rows[i].prescription
+      }
+      arrOfPresc.push(prescObj);
+    }
+
+    res.render("presc", { data: { prescArr: arrOfPresc } });
+    client_1.end()
+  });
+
+
 });
+
+app.get("/vetVisits", (req, res) => {
+  var uid = req.query.id;
+  console.log("LOGGIN ID OF PP TO VIEW vet visits: " + uid);
+  var qforvetvisits = `select level1.d_name, level1.a_date, level1.a_time, reviews.rating from (select appointments.appointment_id, doc_info.d_name, a_date, a_time from appointments join doc_info on appointments.doc_id = doc_info.doc_id where pet_id = (select pet_id from pet_info where user_id = ${uid}) and completion_status = true) as level1 join reviews on level1.appointment_id = reviews.appid where reviews.pp_id = ${uid};`;
+  client_1 = new Client(pgconnObj);
+  client_1.connect();
+  client_1.query(qforvetvisits, (err, resultofvetvisits) => {
+    console.log('GETTING ALL THE VET VISITS OF USER' + uid + " ERROR IF ANY " + err);
+    console.log(resultofvetvisits);
+    var vetvisitArr = [];
+    for (var i = 0; i < resultofvetvisits.rows.length; i++) {
+      var dbdate = new Date(resultofvetvisits.rows[i].a_date);
+      var date = dbdate.getFullYear() + "-" + (dbdate.getMonth() + 1) + "-" + dbdate.getDate();
+      var vetvisitsObj = {
+        docname: resultofvetvisits.rows[i].d_name,
+        date: date,
+        time: resultofvetvisits.rows[i].a_time,
+        rating: resultofvetvisits.rows[i].rating
+      }
+      vetvisitArr.push(vetvisitsObj);
+    }
+    res.render("vetvisits", { data: { vetvisitArr: vetvisitArr } });
+    client_1.end()
+  });
+});
+
+
+
+
+
+
 
 let bookReqData = null;
 var clientpparr = [];
 var clientdocarr = [];
-// var clientsArr = [];
-// const selectedDocsArr = [
-//   {
-//     docEmail: "ishita@gmail.com",
-//   },
-//   {
-//     docEmail: "jai@gmail.com",
-//   },
-//   {
-//     docEmail: "cathy@gmail.com",
-//   },
-// ];
-// for (i = 0; i < selectedDocsArr.length; i++) {
-//   console.log(selectedDocsArr[i].docEmail);
-// }
+
 
 //WEBSOCKETS //*****************************************************************
 wss.on("connection", (ws) => {
@@ -389,7 +528,7 @@ wss.on("connection", (ws) => {
             var userppObj = isPpPresent(responseFromDoc["to"]);
             var docObj = isDocPresent(responseFromDoc["from"]);
             userppObj.Uconnection.send(
-              `{"resType":"gotAppRes","yourDoc":"${docObj.docname}","time":"${responseFromDoc["time"]}"}`);
+              `{"resType":"gotAppRes","yourDoc":"${docObj.docname}","time":"${responseFromDoc["time"]}","appId":"${responseFromDoc["appId"]}"}`);
             userppObj.DocArrmarker = 0;
             break;
 
@@ -460,6 +599,39 @@ wss.on("connection", (ws) => {
             break;
         }
         break;
+
+      case "rateReqByDoc":
+        //email of the doc sent, email of the pp: from doc to pp
+        var rateReqFromDoc = jsonReqForReqType;
+        var userObj = isPpPresent(rateReqFromDoc.to);
+        var docObj = isDocPresent(rateReqFromDoc.from);
+        userObj.Uconnection.send(`{"resType":"rateRes","yourDoc":"${docObj.docname}","docsEmail":"${docObj.docEmail}"}`);
+        break;
+
+      case "ratedReqBypp":
+        //email of the doc, email of the pp, rate: from pp to doc
+        var rateResFrompp = jsonReqForReqType;
+        var userObj = isPpPresent(rateResFrompp.ppemail);
+        var docObj = isDocPresent(rateResFrompp.docemail);
+        var rateNum = rateResFrompp.rate;
+        var appId = rateResFrompp.appid;
+        // review_id | pp_id | doc_id | rating
+        var ppid = userObj.ppid;
+        var docid = docObj.docid;
+        var qforreview = `insert into reviews(rating, appid, doc_id, pp_id) values(${rateNum}, ${appId}, ${docid}, ${ppid})`;
+        client_1 = new Client(pgconnObj);
+        client_1.connect();
+        client_1.query(qforreview, (err, resultofapps) => {
+          console.log('RATING DONE');
+          console.log(resultofapps + " " + err);
+          client_1.end()
+        });
+
+
+        //insert into DB
+        break;
+
+
     }
   });
 
@@ -468,7 +640,7 @@ wss.on("connection", (ws) => {
     console.log("client disocnnected");
     deleteClient(ws);
     console.log(
-      "LOADING THE  ppARRAY and docARRAY AFTER NEW USER CONNECTED:\npparray = " +
+      "LOADING THE  ppARRAY and docARRAY AFTER USER DISCONNECTION:\npparray = " +
       Object.keys(clientpparr) +
       "\ndocarray = " +
       Object.keys(clientdocarr)

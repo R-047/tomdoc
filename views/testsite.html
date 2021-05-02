@@ -1,139 +1,236 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-        #prescription-container {
-            position: absolute;
-            width: 446px;
-            height: 652px;
-            left: 900px;
-            top: 100px;
-
-            background: #ffffff;
-            box-shadow: -1px 1px 28px -11px #000000;
-            border-radius: 36px;
-        }
-
-        #title-textbox {
-            position: absolute;
-            width: 350px;
-            height: 30px;
-            left: 46px;
-            top: 93px;
-            border: 0px;
-            border-bottom: 1px solid #000000;
-            outline: none;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 24px;
-            line-height: 28px;
-        }
-
-        #presc-textarea {
-            position: absolute;
-            width: 344px;
-            height: 430px;
-            left: 51px;
-            top: 134px;
-
-            border: 0px solid #000000;
-            box-sizing: border-box;
-            outline: none;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 24px;
-            line-height: 28px;
-        }
-
-        #save-btn-container {
-            position: absolute;
-            width: 175px;
-            height: 49px;
-            left: 132px;
-            top: 582px;
-
-            background: radial-gradient(100% 100% at 50.38% 0%,
-                    #2420ee 0%,
-                    rgba(109, 106, 230, 0.66) 100%);
-            /* border: 1px solid #000000; */
-            box-sizing: border-box;
-            border-radius: 21px;
-        }
-
-        #save-text {
-            position: absolute;
-            width: 50px;
-            height: 28px;
-            left: 62px;
-            top: 11px;
-
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 24px;
-            line-height: 28px;
-            display: flex;
-            align-items: center;
-            text-align: center;
-
-            color: #ffffff;
-        }
-
-        /* close button */
-        .close {
-            position: absolute;
-            right: 32px;
-            top: 32px;
-            width: 32px;
-            height: 32px;
-            opacity: 0.3;
-        }
-
-        .close:hover {
-            opacity: 1;
-        }
-
-        .close:before,
-        .close:after {
-            position: absolute;
-            left: 15px;
-            content: " ";
-            height: 33px;
-            width: 2px;
-            background-color: #333;
-        }
-
-        .close:before {
-            transform: rotate(45deg);
-        }
-
-        .close:after {
-            transform: rotate(-45deg);
-        }
-    </style>
+    <title>Cards</title>
 </head>
 
+<style type="text/css">
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    body {
+        font-family: arial;
+    }
+
+    .main {
+
+        margin: 2%;
+    }
+
+    .card {
+        width: 20%;
+        display: inline-block;
+        box-shadow: 2px 2px 20px black;
+        border-radius: 5px;
+        margin: 2%;
+    }
+
+    .image img {
+        width: 100%;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+
+
+
+    }
+
+    .title {
+
+        text-align: center;
+        padding: 10px;
+
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .des {
+        padding: 3px;
+        text-align: center;
+
+        padding-top: 10px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    button {
+        margin-top: 40px;
+        margin-bottom: 10px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+        transition: .5s;
+        cursor: pointer;
+    }
+</style>
+
 <body>
-    <div id="prescription-container">
-        <a href="#" class="close"></a>
-        <!-- <div id="title-textbox"></div> -->
-        <input id="title-textbox" type="text" class="form-control" placeholder="title" aria-label="Username"
-            aria-describedby="addon-wrapping" />
 
-        <!-- <div id="presc-textarea"></div> -->
-        <textarea class="form-control" placeholder="leave the prescription here" id="presc-textarea"></textarea>
+    <div class="main">
 
-        <div id="save-btn-container">
-            <div id="save-text">save</div>
+
+        <!--cards -->
+
+        <div class="card">
+
+            <div class="image">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gfp-missouri-st-louis-clubhouse-pond-and-scenery.jpg/1199px-Gfp-missouri-st-louis-clubhouse-pond-and-scenery.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2018/01/09/03/49/the-natural-scenery-3070808_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2015/11/07/11/41/lake-1031405_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2018/01/09/03/49/the-natural-scenery-3070808_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2018/01/09/03/49/the-natural-scenery-3070808_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2018/01/09/03/49/the-natural-scenery-3070808_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+        <div class="card">
+
+            <div class="image">
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Gfp-missouri-st-louis-clubhouse-pond-and-scenery.jpg/1199px-Gfp-missouri-st-louis-clubhouse-pond-and-scenery.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+
+            </div>
+        </div>
+        <!--cards -->
+
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2018/01/09/03/49/the-natural-scenery-3070808_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
+        </div>
+        <!--cards -->
+
+
+        <div class="card">
+
+            <div class="image">
+                <img src="https://cdn.pixabay.com/photo/2015/11/07/11/41/lake-1031405_1280.jpg">
+            </div>
+            <div class="title">
+                <h1>
+                    Write title Here</h1>
+            </div>
+            <div class="des">
+                <p>You can Add Desccription Here...</p>
+                <button>Read More...</button>
+            </div>
         </div>
     </div>
 </body>
